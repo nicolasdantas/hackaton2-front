@@ -8,7 +8,7 @@ const Board = () => {
 
   useEffect(() => {
     axios
-      .get("http://a59935c6e010.ngrok.io/api/tiles")
+      .get("http://70da4d1824eb.ngrok.io/api/tiles")
       .then((res) => setBoard(res.data));
   }, []);
 
