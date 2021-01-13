@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Team from './components/team';
 
 import Login from './components/Login';
 
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <div className='App'>
           <Switch>
+            <Route exact path='/team' component={Team} />
 
             <Route exact path='/' component={Login} />
 
