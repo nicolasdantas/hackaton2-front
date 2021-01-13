@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, 100px);
+  grid-template-rows: repeat(6, 100px);
+
+  .tile {
+    background-color: lightblue;
+    border: solid 1px darkcyan;
+  }
+}
+
+// h1 { example to fix column start and end on an element
+
+//     grid-column-start: 1;
+
+//     grid-column-end: 2;
+
+// }
+
+// .container { example to use a template
+//     margin: 0;
+//     display: grid;
+//     grid-template-columns: 350px 450px;
+//     grid-template-rows: 300px 150px 200px;
+//     grid-template-areas:
+//         "title picture"
+//         "subtitle picture"
+//         "quote quote"
+//     ;
+// }
