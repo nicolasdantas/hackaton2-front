@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Webcam from 'react-webcam';
 
 function App() {
   return (
@@ -7,8 +8,7 @@ function App() {
       <Router>
         <div className='App'>
           <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/adherents' component={Adherents} />
+            <Route exact path='/' component={Webcam}/>
           </Switch>
         </div>
       </Router>
