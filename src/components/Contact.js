@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import '../style/Contact.scss'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(() => ({
@@ -42,7 +39,7 @@ const useStyles = makeStyles(() => ({
 const Contact = () => {
   const classes = useStyles();
 
-  const { register, handleSubmit, formState, errors, control } = useForm({
+  const { register, handleSubmit, formState } = useForm({
     mode: 'onBlur',
   });
 
