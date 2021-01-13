@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
   papers: {
     padding: 10,
-    backgroundColor: "#ffffcc",
+    backgroundColor: "#ffd9b3",
     boxShadow: "0 1px 3px rgba(50,62,64,0.12), 0 1px 2px rgba(50,62,64,0.24)",
     transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",
     "&:hover": {
@@ -41,6 +41,16 @@ const useStyles = makeStyles({
 });
 
 const avatar = "https://pickaface.net/gallery/avatar/DW7165570eb49e179a.png";
+const avatar2 =
+  "https://pickaface.net/gallery/avatar/MissGriffith529ca4c121402.png";
+const avatar3 =
+  "https://pickaface.net/gallery/avatar/unr_randomguy_190409_1742_4g5.png";
+const avatar4 =
+  "https://pickaface.net/gallery/avatar/unr_random_180527_1151_2bcb7h9.png";
+const avatar5 =
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVCHwTMwBaNc8cn5vAmi_jRDSHiKYkQNhWrw&usqp=CAU";
+const avatar6 =
+  "https://pickaface.net/gallery/avatar/unr_random_180410_1905_z1exb.png";
 
 export default function Team() {
   const classes = useStyles();
@@ -56,7 +66,7 @@ export default function Team() {
         <Paper className={classes.papers} elevation={3}>
           <img
             className={classes.avatar}
-            src={avatar}
+            src={avatar2}
             alt="Florian's portrait"
           />
           <h3 className={classes.firstName}>Florian</h3>
@@ -66,7 +76,7 @@ export default function Team() {
         <Paper className={classes.papers} elevation={3}>
           <img
             className={classes.avatar}
-            src={avatar}
+            src={avatar3}
             alt="Nicolas's portrait"
           />
           <h3 className={classes.firstName}>Nicolas</h3>
@@ -74,7 +84,11 @@ export default function Team() {
       </Grid>
       <Grid item xs={12} sm={6} md={4} className={classes.cards}>
         <Paper className={classes.papers} elevation={3}>
-          <img className={classes.avatar} src={avatar} alt="Yoann's portrait" />
+          <img
+            className={classes.avatar}
+            src={avatar4}
+            alt="Yoann's portrait"
+          />
           <h3 className={classes.firstName}>Yoann</h3>
         </Paper>
       </Grid>
@@ -82,7 +96,7 @@ export default function Team() {
         <Paper className={classes.papers} elevation={3}>
           <img
             className={classes.avatar}
-            src={avatar}
+            src={avatar5}
             alt="Aymeric's portrait"
           />
           <h3 className={classes.firstName}>Aymeric</h3>
@@ -92,7 +106,7 @@ export default function Team() {
         <Paper className={classes.papers} elevation={3}>
           <img
             className={classes.avatar}
-            src={avatar}
+            src={avatar6}
             alt="Brieuc's portrait"
           />
           <h3 className={classes.firstName}>Brieuc</h3>
