@@ -1,0 +1,29 @@
+.container-contact-form {
+    .contactForm{
+      width:70%
+    }
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    h1{
+      margin-bottom: 2rem;
+    }
+    form {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    .input-contact-form {
+      margin-bottom: 10px;
+    }
+    .button-contact-form {
+      margin-top: 12px;
+    }
+  }
+  
+    @media screen and (min-width: 1024px) {
+      .container-contact-form {
+        .contactForm{
+          width:30%
+        }
+      }
+    }
