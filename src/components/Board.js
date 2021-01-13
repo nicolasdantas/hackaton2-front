@@ -19,6 +19,7 @@ const Board = () => {
       <div className="grid-container">
         {board.map((tile) => (
           <Tile
+            key={tile.id}
             tile={tile}
             setShowWebcam={setShowWebcam}
             showWebcam={showWebcam}
