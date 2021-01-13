@@ -1,7 +1,7 @@
 function App() {
   return (
     <div >
-      Hello young developpers
+      Hello young developpers !
     </div>
   );
 }
