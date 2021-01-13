@@ -15,7 +15,7 @@ const Board = () => {
   return (
     <div className="board-container">
       <div className="grid-container">
-        {board.map((tile) => <Tile tile/>)}
+        {board.map((tile) => <Tile tile={tile}/>)}
       </div>
     </div>
   );

@@ -1,10 +1,8 @@
-import React from 'react';
+import React from "react";
 
-const Tile = (props) => {
-  console.log(props);
-  return (
-    <div className='tile'></div>
-  )
-}
+const Tile = ({ tile }) => {
+  const { type, room } = tile;
+  return <div className={room ? `${room} ${type}` : type}></div>;
+};
 
-export default Tile
+export default Tile;

@@ -13,14 +13,29 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(27, 20px);
-  grid-template-rows: repeat(24, 20px);
+  grid-template-columns: repeat(27, 25px);
+  grid-template-rows: repeat(24, 25px);
 
-  .tile {
-    background-color: lightblue;
-    border: solid 1px darkcyan;
+  .grass {
+    background-color: #32CD32
+  }
+  .wall {
+    background-color: #696969
+  }
+  .table{
+    background-color: #49300e
+  }
+  .seat{
+    background-color:	#d6ab71
+  }
+  .tree{
+    background-color: green
+  }
+  .floor{
+    background-color: #DCDCDC
   }
 }
+
 
 // h1 { example to fix column start and end on an element
 
