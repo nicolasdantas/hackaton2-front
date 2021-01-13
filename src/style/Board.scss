@@ -13,12 +13,30 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(8, 100px);
-  grid-template-rows: repeat(6, 100px);
+  grid-template-columns: repeat(27, 25px);
+  grid-template-rows: repeat(24, 25px);
 
-  .tile {
-    background-color: lightblue;
-    border: solid 1px darkcyan;
+  .grass {
+    background-color: #32cd32;
+    cursor: pointer;
+  }
+  .wall {
+    background-color: #696969;
+  }
+  .table {
+    background-color: #49300e;
+    cursor: pointer;
+  }
+  .seat {
+    background-color: #d6ab71;
+    cursor: pointer;
+  }
+  .tree {
+    background-color: green;
+    cursor: pointer;
+  }
+  .floor {
+    background-color: #dcdcdc;
   }
 }
 
