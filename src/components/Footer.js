@@ -1,20 +1,16 @@
 import React from 'react';
 import '../style/Footer.scss';
-import {
-    BrowserRouter as 
-    Link
-  } from "react-router-dom";
 
 const Footer = () => {
     return(
-        <div>
+        <footer>
             <div className="container-footer">
                 <div>
-                    <h2>Nom de l'entreprise</h2>
-                    <p>Logo</p>
+                    <h3>Nom de l'entreprise</h3>
+                    <p className="logo">Logo</p>
                 </div>
                 <div className="social">
-                    <h2>Réseaux sociaux</h2>
+                    <h3>Réseaux sociaux</h3>
                     <a href='https://www.facebook.com/ApsideGroupe'>
                     <p>Facebook</p>
                     </a>
@@ -26,7 +22,7 @@ const Footer = () => {
                     </a>
                 </div>
                 <div className="a-propos">
-                    <h2>Nom de l'entreprise</h2>
+                    <h3>Nom de l'entreprise</h3>
                     <a href='/team'>
                         <p>A propos</p>
                     </a>
@@ -38,12 +34,12 @@ const Footer = () => {
                     </a>
                 </div>
                 <div className="languages">
-                    <h2>Langues</h2>
+                    <h3>Langues</h3>
                     <p>Francais</p>
                     <p>Anglais</p>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 

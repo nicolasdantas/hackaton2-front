@@ -16,22 +16,22 @@ const useStyles = makeStyles(() => ({
     width: 200,
   },
   btn: {
-    backgroundColor: '#6d071a',
+    backgroundColor: '#3f51b5',
     textTransform: 'none',
     '&:hover': {
-      backgroundColor: '#6d071a',
+      backgroundColor: '#3f51b5',
     },
   },
   input: {
     width: '100%',
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#6d071a',
+      borderColor: '#3f51b5',
     },
     '& .MuiOutlinedInput-input': {
-      color: '#6d071a',
+      color: '#3f51b5',
     },
     '& .MuiInputLabel-outlined.Mui-focused': {
-      color: '#6d071a',
+      color: '#3f51b5',
     },
   },
 }));
