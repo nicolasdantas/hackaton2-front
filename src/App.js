@@ -1,14 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Webcam from 'react-webcam';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Webcam from "./components/Webcam";
 
 function App() {
   return (
     <div>
       <Router>
-        <div className='App'>
+        <div className="App">
           <Switch>
-            <Route exact path='/' component={Webcam}/>
+            <Route exact path="/" component={Webcam} />
           </Switch>
         </div>
       </Router>
