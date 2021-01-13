@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/Board.scss";
-import Tile from './Tile'
+import Tile from "./Tile";
+import Webcam from "./Webcam";
 
 const Board = () => {
   const [board, setBoard] = useState([]);
+  const [showWebcam, setShowWebcam] = useState(false);
 
   useEffect(() => {
     axios
@@ -15,8 +17,17 @@ const Board = () => {
   return (
     <div className="board-container">
       <div className="grid-container">
-        {board.map((tile) => <Tile tile={tile}/>)}
+        {board.map((tile) => (
+          <Tile
+            tile={tile}
+            setShowWebcam={setShowWebcam}
+            showWebcam={showWebcam}
+          />
+        ))}
       </div>
+      {showWebcam && (
+        <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
+      )}
     </div>
   );
 };

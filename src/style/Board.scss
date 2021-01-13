@@ -17,25 +17,28 @@
   grid-template-rows: repeat(24, 25px);
 
   .grass {
-    background-color: #32CD32
+    background-color: #32cd32;
+    cursor: pointer;
   }
   .wall {
-    background-color: #696969
+    background-color: #696969;
   }
-  .table{
-    background-color: #49300e
+  .table {
+    background-color: #49300e;
+    cursor: pointer;
   }
-  .seat{
-    background-color:	#d6ab71
+  .seat {
+    background-color: #d6ab71;
+    cursor: pointer;
   }
-  .tree{
-    background-color: green
+  .tree {
+    background-color: green;
+    cursor: pointer;
   }
-  .floor{
-    background-color: #DCDCDC
+  .floor {
+    background-color: #dcdcdc;
   }
 }
-
 
 // h1 { example to fix column start and end on an element
 

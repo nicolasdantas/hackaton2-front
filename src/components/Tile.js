@@ -1,21 +1,20 @@
 import React from "react";
 
-const Tile = ({ tile }) => {
-  // const [showWebcam, setShowWebcam] = useState(false);
+const Tile = ({ tile, setShowWebcam, showWebcam }) => {
   const { type, room } = tile;
 
-  // const handleClick = (event) => {
-  //   if(event.target.value.includes('seat')){
-  //     setShowWebcam(!showWebcam)
-  //   }
-  // }
+  const handleClick = (event) => {
+    if (event.target.className.includes("space")) {
+      setShowWebcam(true);
+    }
+  };
 
   return (
     <div
       className={room ? `${room} ${type}` : type}
-      // onClick={(event) => {
-      //   handleClick(event);
-      // }}
+      onClick={(event) => {
+        handleClick(event);
+      }}
     ></div>
   );
 };
