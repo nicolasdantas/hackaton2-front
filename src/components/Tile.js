@@ -25,8 +25,6 @@ const Tile = ({ tile, setShowWebcam }) => {
   }))(Tooltip);
 
   const handleClick = async (event) => {
-    console.log('click');
-
     const moveResult = await axios.get(
       `${baseUrl}/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
     );

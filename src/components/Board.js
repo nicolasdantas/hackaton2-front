@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../style/Board.scss';
 import Tile from './Tile';
 import Webcam from './Webcam';
 import lodash from 'lodash';
-import { LoginContext } from '../components/contexts/LoginContext';
+// import { LoginContext } from '../components/contexts/LoginContext';
 
 const baseUrl = 'https://526037743aa4.ngrok.io/api';
 const mercureServer = 'http://2e3ccdecfa13.ngrok.io/.well-known/mercure';
@@ -50,7 +50,7 @@ const Board = () => {
         let tile = board[i][j];
         mapBoard.push(
           <Tile
-            key={tile.id}
+            key={'emptyMap' + tile.id}
             tile={tile}
             setShowWebcam={setShowWebcam}
             showWebcam={showWebcam}
@@ -94,28 +94,6 @@ const Board = () => {
       }
     }
   }, [boardWithUsers]);
-
-  // useEffect(() => {
-  //   console.log('useEffect 2', boardWithUsers);
-  //   mapOnBoard();
-  // }, [boardWithUsers]);
-
-  // add user logged to the grid
-  // useEffect(() => {
-  //   for (let i = 0; i < board.length; i++)
-  //     if (
-  //       board[i].coordX === userLogged.coordX &&
-  //       board[i].coordY === userLogged.coordY
-  //     ) {
-  //       setBoardWithUsersAndUserLogged(
-  //         boardWithUsers.map((obj) =>
-  //           obj.id === boardWithUsers[i].id
-  //             ? { ...obj, type: 'user-logged' }
-  //             : obj
-  //         )
-  //       );
-  //     }
-  // }, [userLogged, boardWithUsers]);
 
   return (
     <div className='board-container'>
