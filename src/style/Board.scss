@@ -1,5 +1,4 @@
 * {
-  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -13,8 +12,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(27, 25px);
-  grid-template-rows: repeat(24, 25px);
+  grid-template-columns: repeat(27, 30px);
+  grid-template-rows: repeat(24, 30px);
 
   .grass {
     background-color: #32cd32;
@@ -34,6 +33,14 @@
   .tree {
     background-color: green;
     cursor: pointer;
+  }
+  .other-users {
+    background-color: red;
+  }
+  .user-logged{
+    background-color: violet;
+    position:relative;
+    z-index:0;
   }
   .floor {
     background-color: #dcdcdc;
