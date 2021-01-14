@@ -11,9 +11,13 @@ import Login from "./components/Login";
 import Board from "./components/Board";
 import LoginProvider from "../src/components/contexts/LoginContext";
 import Home from "./components/cook/Home";
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 
 function App() {
+  const store = createStore();
   return (
+    <Provider store={store}>
     <ToastProvider placement="top-right">
       <div>
         <LoginProvider>
@@ -40,6 +44,7 @@ function App() {
         </LoginProvider>
       </div>
     </ToastProvider>
+    </Provider>
   );
 }
 
