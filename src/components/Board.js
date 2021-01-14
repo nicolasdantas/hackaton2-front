@@ -20,13 +20,13 @@ const Board = () => {
 
   useEffect(() => {
     axios
-      .get("http://308cf29b1c39.ngrok.io/api/users")
+      .get("http://c6cbb8720987.ngrok.io/api/users")
       .then((res) => setUsers(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get("http://308cf29b1c39.ngrok.io/api/tiles")
+      .get("http://c6cbb8720987.ngrok.io/api/tiles")
       .then((res) => setBoard(res.data));
   }, []);
 
@@ -52,7 +52,9 @@ const Board = () => {
         ) {
           setBoardWithUsers(
             board.map((obj) =>
-              obj.id === board[i].id ? { ...obj, type: "other-users" } : obj
+              obj.id === board[i].id
+                ? { ...obj, type: "other-users", user: users[j] }
+                : obj
             )
           );
         }
@@ -76,7 +78,6 @@ const Board = () => {
           )
         );
       }
-      console.log(userLogged)
   }, [userLogged, boardWithUsers]);
 
   return (
