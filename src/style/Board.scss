@@ -13,8 +13,8 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(27, 25px);
-  grid-template-rows: repeat(24, 25px);
+  grid-template-columns: repeat(27, 30px);
+  grid-template-rows: repeat(24, 30px);
 
   .grass {
     background-color: #32cd32;

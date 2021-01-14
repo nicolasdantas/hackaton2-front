@@ -2,6 +2,7 @@
 import React, { useState, useContext } from "react";
 import { LoginContext } from "../components/contexts/LoginContext";
 
+
 const Tile = ({ tile, setShowWebcam, showWebcam }) => {
   const { type, room } = tile;
   const { userLogged, setUserLogged } = useContext(LoginContext);
