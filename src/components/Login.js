@@ -72,11 +72,19 @@ export default function Login() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const symfonyLogin = `http://526037743aa4.ngrok.io/api/login?username=${username}&password=${password}`;
+  const symfonyLogin = `http://d6e9432fc7eb.ngrok.io/api/login?username=${username}&password=${password}`;
 
   const onSubmit = async () => {
+    console.log('coucou')
     try {
-      const res = await axios.post(symfonyLogin);
+      const res = await axios({
+        url: symfonyLogin,
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+    });
       console.log(res);
       addToast("Vous êtes désormais connecté", {
         appearance: "success",
@@ -141,7 +149,9 @@ export default function Login() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => onSubmit()}
+            onClick={() => {
+              onSubmit();
+            }}
           >
             Login
           </Button>
