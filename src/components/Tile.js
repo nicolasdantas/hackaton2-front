@@ -7,10 +7,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 
+const baseUrl = 'https://526037743aa4.ngrok.io/api';
+
 const Tile = ({ tile, setShowWebcam }) => {
   const { type, room } = tile;
-  if (tile.type.includes('other-users')) {
-  }
+
   const { userLogged, setUserLogged } = useContext(LoginContext);
 
   const HtmlTooltip = withStyles((theme) => ({
@@ -24,10 +25,10 @@ const Tile = ({ tile, setShowWebcam }) => {
   }))(Tooltip);
 
   const handleClick = async (event) => {
-    console.log(userLogged);
+    console.log('click');
 
     const moveResult = await axios.get(
-      `https://526037743aa4.ngrok.io/api/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
+      `${baseUrl}/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
     );
 
     if (moveResult.data !== false) {

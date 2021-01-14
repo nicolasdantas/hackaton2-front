@@ -14,8 +14,6 @@ const mercureServer = 'http://2e3ccdecfa13.ngrok.io/.well-known/mercure';
 const mercureUrl = new URL(mercureServer);
 mercureUrl.searchParams.append('topic', 'users');
 
-const eventSource = new EventSource(mercureUrl);
-
 const mapBoard = [];
 
 const Board = () => {
@@ -25,14 +23,14 @@ const Board = () => {
 
   const [users, setUsers] = useState([]);
   const [showWebcam, setShowWebcam] = useState(false);
+  const eventSource = new EventSource(mercureUrl);
 
   eventSource.onmessage = (e) => {
-    console.log(JSON.parse(e.data));
     setUsers(JSON.parse(e.data));
   }; // setting users
 
-  useEffect(() => {
-    axios.get(baseUrl + '/users').then((res) => setUsers(res.data));
+  useEffect(async () => {
+    await axios.get(baseUrl + '/users').then((res) => setUsers(res.data));
   }, []);
 
   useEffect(() => {
@@ -66,7 +64,7 @@ const Board = () => {
   useEffect(() => {
     if (board.length > 0) {
       const newBoard = lodash.cloneDeep(board); // state immuable
-      console.log(newBoard);
+
       users.forEach((user) => {
         if (user.coordY && user.coordX) {
           newBoard[user.coordY][user.coordX].type = 'user';
