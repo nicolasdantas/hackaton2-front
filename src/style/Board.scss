@@ -21,10 +21,11 @@
   }
   .wall {
     background-color: #696969;
+    cursor: default;
   }
   .table {
     background-color: #49300e;
-    cursor: pointer;
+    cursor: default;
   }
   .seat {
     background-color: #d6ab71;
@@ -32,18 +33,20 @@
   }
   .tree {
     background-color: green;
-    cursor: pointer;
+    cursor: default;
   }
   .other-users {
     background-color: red;
+    cursor: default;
   }
-  .user-logged{
+  .user-logged {
     background-color: violet;
-    position:relative;
-    z-index:0;
+    position: relative;
+    z-index: 0;
   }
   .floor {
     background-color: #dcdcdc;
+    cursor: pointer;
   }
 }
 
