@@ -6,7 +6,7 @@ const Footer = () => {
         <footer>
             <div className="container-footer">
                 <div>
-                    <h3>Nom de l'entreprise</h3>
+                    <h3>Nom du site</h3>
                     <p className="logo">Logo</p>
                 </div>
                 <div className="social">
@@ -22,7 +22,7 @@ const Footer = () => {
                     </a>
                 </div>
                 <div className="a-propos">
-                    <h3>Nom de l'entreprise</h3>
+                    <h3>Nom du site</h3>
                     <a href='/team'>
                         <p>A propos</p>
                     </a>
