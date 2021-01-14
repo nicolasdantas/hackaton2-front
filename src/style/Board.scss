@@ -40,6 +40,8 @@
   }
   .user-logged{
     background-color: violet;
+    position:relative;
+    z-index:0;
   }
   .floor {
     background-color: #dcdcdc;
