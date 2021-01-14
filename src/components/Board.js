@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import '../style/Board.scss';
-import Tile from './Tile';
-import Webcam from './Webcam';
-import { LoginContext } from '../components/contexts/LoginContext';
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import "../style/Board.scss";
+import Tile from "./Tile";
+import Webcam from "./Webcam";
+import { LoginContext } from "../components/contexts/LoginContext";
+import BoardLoader from "./Loader";
 
 const Board = () => {
   const [board, setBoard] = useState([]);
@@ -20,13 +21,13 @@ const Board = () => {
 
   useEffect(() => {
     axios
-      .get('https://526037743aa4.ngrok.io/api/users')
+      .get("https://526037743aa4.ngrok.io/api/users")
       .then((res) => setUsers(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get('https://526037743aa4.ngrok.io/api/tiles')
+      .get("https://526037743aa4.ngrok.io/api/tiles")
       .then((res) => setBoard(res.data));
   }, []);
 
@@ -57,7 +58,7 @@ const Board = () => {
           setBoardWithUsers(
             board.map((obj) =>
               obj.id === board[i].id
-                ? { ...obj, type: 'other-users', user: users[j] }
+                ? { ...obj, type: "other-users", user: users[j] }
                 : obj
             )
           );
@@ -77,19 +78,30 @@ const Board = () => {
         setBoardWithUsersAndUserLogged(
           boardWithUsers.map((obj) =>
             obj.id === boardWithUsers[i].id
-              ? { ...obj, type: 'user-logged' }
+              ? { ...obj, type: "user-logged" }
               : obj
           )
         );
       }
   }, [userLogged, boardWithUsers]);
 
-  return (
-    <div className='board-container'>
-      <div className='grid-container'>{mapOnBoard()}</div>
+  return boardWithUsersAndUserLogged.length !== 0 ? (
+    <div className="board-container">
+      <div className="grid-container">{mapOnBoard()}</div>
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
       )}
+    </div>
+  ) : (
+    <div
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <BoardLoader type="Circles" />
     </div>
   );
 };
