@@ -9,7 +9,10 @@ import { LoginContext } from "../components/contexts/LoginContext";
 const Board = () => {
   const [board, setBoard] = useState([]);
   const [boardWithUsers, setBoardWithUsers] = useState([]);
-  const [boardWithUsersAndUserLogged, setBoardWithUsersAndUserLogged] = useState([]);
+  const [
+    boardWithUsersAndUserLogged,
+    setBoardWithUsersAndUserLogged,
+  ] = useState([]);
   const [users, setUsers] = useState([]);
   const [showWebcam, setShowWebcam] = useState(false);
 
@@ -17,16 +20,15 @@ const Board = () => {
 
   useEffect(() => {
     axios
-      .get("http://cca5886e1061.ngrok.io/api/users")
+      .get("http://308cf29b1c39.ngrok.io/api/users")
       .then((res) => setUsers(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get("http://cca5886e1061.ngrok.io/api/tiles")
+      .get("http://308cf29b1c39.ngrok.io/api/tiles")
       .then((res) => setBoard(res.data));
   }, []);
-
 
   // map on the final array to create Tile components
   const mapOnBoard = () => {
@@ -40,7 +42,7 @@ const Board = () => {
     ));
   };
 
-  // add user logged to the grid
+  // add other users to the grid
   useEffect(() => {
     for (let i = 0; i < board.length; i++) {
       for (let j = 0; j < users.length; j++) {
@@ -59,22 +61,23 @@ const Board = () => {
     mapOnBoard();
   }, [users, board]);
 
-
-  // add other users to the grid
+  // add user logged to the grid
   useEffect(() => {
     for (let i = 0; i < board.length; i++)
       if (
-        board[i].coordX === userLogged[0].coordX &&
-        board[i].coordY === userLogged[0].coordY
+        board[i].coordX === userLogged.coordX &&
+        board[i].coordY === userLogged.coordY
       ) {
         setBoardWithUsersAndUserLogged(
           boardWithUsers.map((obj) =>
-            obj.id === boardWithUsers[i].id ? { ...obj, type: "user-logged" } : obj
+            obj.id === boardWithUsers[i].id
+              ? { ...obj, type: "user-logged" }
+              : obj
           )
         );
-
       }
-  }, [users, boardWithUsers]);
+      console.log(userLogged)
+  }, [userLogged, boardWithUsers]);
 
   return (
     <div className="board-container">
