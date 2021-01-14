@@ -1,3 +1,7 @@
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import MentionLegale from './components/Mentionslegales';
+import './app.scss';
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -15,13 +19,18 @@ function App() {
     <div>
       <LoginProvider>
       <Router>
-        <div className="App">
+        <div className='App'>
+        <div className="main-div">
           <Navbar />
           <Switch>
             <Route exact path="/" component={Login} />
             <Route exact path="/team" component={Team} />
             <Route exact path="/board" component={Board} />
+            <Route exact path='/contact' component={Contact} />
+            <Route exact path='/mentionslegales' component={MentionLegale} />
           </Switch>
+          </div>
+          <Footer />
         </div>
       </Router>
       </LoginProvider>
