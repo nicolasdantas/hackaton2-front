@@ -57,9 +57,14 @@ useEffect(() => {
             {postRecipe.length >= 0 &&
                 postRecipe.map((post) => {
                     return (
-                        <div key={post.id}>
+                        <div className="cards-container" key={post.id}>
                             <h3>{post.username}</h3>
                             <img className="image-recipe" src={post.avatar} alt={post.username} />
+                            <p>{post.lunches.name}</p>
+                            <img src={post.lunches.image} alt={post.lunches.name} />
+                            <p>{post.lunches.rate}</p>
+                            <p>{post.lunches.content}</p>
+                            <p>{post.lunches.name}</p>
                         </div>
                     )
                 })
