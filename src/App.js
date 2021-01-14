@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Team from "./components/team";
 import Login from "./components/Login";
 import Board from "./components/Board";
-import LoginProvider from './Contexts/LoginContext';
+import LoginProvider from '../src/components/contexts/LoginContext'
 
 function App() {
   return (

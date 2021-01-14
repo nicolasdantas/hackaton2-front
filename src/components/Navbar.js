@@ -7,6 +7,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ContinuousSlider from "./VolumeSlider";
 import "../style/Navbar.scss";
 import { useLocation } from "react-router-dom";
+import Welcome from "./Welcome";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +37,9 @@ export default function Navbar() {
               ༼ つ ◕◕ ༽つ TAKE MY ENERGY ༼ つ ◕◕ ༽つ
             </Typography>
             <div className="settings">
+            <div className="slider">
+            <Welcome />
+            </div>
               <div className="slider">
                 <ContinuousSlider />
               </div>
