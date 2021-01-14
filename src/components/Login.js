@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -69,6 +69,9 @@ export default function Login() {
   const history = useHistory();
   const { addToast } = useToasts();
 
+  const [userName, setUserName] = useState();
+  const [password, setPassword] = useState();
+
   const symfonyLogin = "https://bfafce609ada.ngrok.io/api/login";
 
   const onSubmit = async (data) => {
@@ -109,6 +112,8 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <TextField
             className={classes.input}
@@ -121,6 +126,8 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             className={classes.rememberMe}
