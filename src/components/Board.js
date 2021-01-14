@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../style/Board.scss';
 import Tile from './Tile';
 import Webcam from './Webcam';
+import GardenMusic from './GardenMusic';
 import { LoginContext } from '../components/contexts/LoginContext';
 
 const Board = () => {
@@ -14,7 +15,10 @@ const Board = () => {
     setBoardWithUsersAndUserLogged,
   ] = useState([]);
   const [users, setUsers] = useState([]);
+
+  // handling special events
   const [showWebcam, setShowWebcam] = useState(false);
+  const [startGardenMusic, setStartGardenMusic] = useState(false);
 
   const { userLogged } = useContext(LoginContext);
 
@@ -38,6 +42,7 @@ const Board = () => {
         tile={tile}
         setShowWebcam={setShowWebcam}
         showWebcam={showWebcam}
+        setStartGardenMusic={setStartGardenMusic}
       />
     ));
   };
@@ -90,6 +95,11 @@ const Board = () => {
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
       )}
+
+      <GardenMusic
+        setPlaying={setStartGardenMusic}
+        playing={startGardenMusic}
+      />
     </div>
   );
 };

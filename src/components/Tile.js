@@ -6,7 +6,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-const Tile = ({ tile, setShowWebcam }) => {
+const Tile = ({ tile, setShowWebcam, setStartGardenMusic }) => {
   const { type, room } = tile;
   if (tile.type.includes('other-users')) {
   }
@@ -35,6 +35,13 @@ const Tile = ({ tile, setShowWebcam }) => {
       });
     }
 
+    if (
+      event.target.className.includes('seat') ||
+      event.target.className.includes('floor')
+    ) {
+      setStartGardenMusic(false);
+    }
+
     setShowWebcam(false);
 
     if (
@@ -42,6 +49,10 @@ const Tile = ({ tile, setShowWebcam }) => {
       event.target.className.includes('seat')
     ) {
       setShowWebcam(true);
+    }
+
+    if (event.target.className.includes('grass')) {
+      setStartGardenMusic(true);
     }
   };
 
