@@ -6,6 +6,7 @@ import Tile from './Tile';
 import Webcam from './Webcam';
 import lodash from 'lodash';
 import GardenMusic from './GardenMusic';
+import BoardLoader from './Loader';
 // import { LoginContext } from '../components/contexts/LoginContext';
 
 const baseUrl = 'https://526037743aa4.ngrok.io/api';
@@ -102,7 +103,7 @@ const Board = () => {
     }
   }, [boardWithUsers]);
 
-  return (
+  return board.length !== 0 ? (
     <div className='board-container'>
       <div className='grid-container'>{mapBoard}</div>
       {showWebcam && (
@@ -113,6 +114,17 @@ const Board = () => {
         setPlaying={setStartGardenMusic}
         playing={startGardenMusic}
       />
+    </div>
+  ) : (
+    <div
+      style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <BoardLoader type='Circles' />
     </div>
   );
 };

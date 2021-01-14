@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,7 +14,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
-import '../style/Login.scss'
+import { useToasts } from "react-toast-notifications";
+import "../style/Login.scss";
 
 function Copyright() {
   return (
@@ -47,24 +49,46 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   input: {
-    '& .MuiInputLabel-outlined': {
-      color: 'white',
+    "& .MuiInputLabel-outlined": {
+      color: "white",
     },
-    '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'white',
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "white",
     },
   },
   login: {
-    color: 'white' ,
+    color: "white",
   },
-  rememberMe:{
-    color:'white',
-  }
+  rememberMe: {
+    color: "white",
+  },
 }));
 
 export default function Login() {
   const classes = useStyles();
   const history = useHistory();
+  const { addToast } = useToasts();
+
+  const [username, setUserName] = useState();
+  const [password, setPassword] = useState();
+
+  const symfonyLogin = "https://bfafce609ada.ngrok.io/api/login";
+
+  const onSubmit = async () => {
+    try {
+      const res = await axios.post(symfonyLogin, { username, password });
+      console.log(res);
+      addToast("Vous êtes désormais connecté", {
+        appareance: "error",
+        autoDismiss: true,
+      });
+    } catch (err) {
+      addToast("Identifiants non reconnus", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -76,7 +100,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           <p className="login">Login</p>
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
             className={classes.input}
             variant="outlined"
@@ -88,6 +112,8 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <TextField
             className={classes.input}
@@ -100,6 +126,8 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             className={classes.rememberMe}
@@ -119,12 +147,12 @@ export default function Login() {
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
-              <p className="signup"> Forgot password?</p>
+                <p className="signup"> Forgot password?</p>
               </Link>
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
-               <p className="signup">{"Don't have an account? Sign Up"}</p> 
+                <p className="signup">{"Don't have an account? Sign Up"}</p>
               </Link>
             </Grid>
           </Grid>
