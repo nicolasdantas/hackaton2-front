@@ -1,13 +1,17 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
 
 const Tile = ({ tile, setShowWebcam, showWebcam }) => {
   const { type, room } = tile;
 
   const handleClick = (event) => {
-    if (event.target.className.includes("space")) {
+    if (event.target.className.includes("space") && event.target.className.includes("seat")) {
       setShowWebcam(true);
     }
   };
+
+  const [coordX, setCoordX] = useState(tile.coordX);
+  const [coordY, setCoordY] = useState(tile.coordY);
 
   return (
     <div

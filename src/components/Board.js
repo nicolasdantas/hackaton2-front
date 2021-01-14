@@ -1,12 +1,25 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "../style/Board.scss";
 import Tile from "./Tile";
 import Webcam from "./Webcam";
+import { LoginContext } from "../components/contexts/LoginContext";
 
 const Board = () => {
   const [board, setBoard] = useState([]);
+  const [boardWithUsers, setBoardWithUsers] = useState([]);
+  const [boardWithUsersAndUserLogged, setBoardWithUsersAndUserLogged] = useState([]);
+  const [users, setUsers] = useState([]);
   const [showWebcam, setShowWebcam] = useState(false);
+
+  const { userLogged } = useContext(LoginContext);
+
+  useEffect(() => {
+    axios
+      .get("http://cca5886e1061.ngrok.io/api/users")
+      .then((res) => setUsers(res.data));
+  }, []);
 
   useEffect(() => {
     axios
@@ -14,18 +27,58 @@ const Board = () => {
       .then((res) => setBoard(res.data));
   }, []);
 
+
+  // map on the final array to create Tile components
+  const mapOnBoard = () => {
+    return boardWithUsersAndUserLogged.map((tile) => (
+      <Tile
+        key={tile.id}
+        tile={tile}
+        setShowWebcam={setShowWebcam}
+        showWebcam={showWebcam}
+      />
+    ));
+  };
+
+  // add user logged to the grid
+  useEffect(() => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < users.length; j++) {
+        if (
+          users[j].coordX === board[i].coordX &&
+          users[j].coordY === board[i].coordY
+        ) {
+          setBoardWithUsers(
+            board.map((obj) =>
+              obj.id === board[i].id ? { ...obj, type: "other-users" } : obj
+            )
+          );
+        }
+      }
+    }
+    mapOnBoard();
+  }, [users, board]);
+
+
+  // add other users to the grid
+  useEffect(() => {
+    for (let i = 0; i < board.length; i++)
+      if (
+        board[i].coordX === userLogged[0].coordX &&
+        board[i].coordY === userLogged[0].coordY
+      ) {
+        setBoardWithUsersAndUserLogged(
+          boardWithUsers.map((obj) =>
+            obj.id === boardWithUsers[i].id ? { ...obj, type: "user-logged" } : obj
+          )
+        );
+
+      }
+  }, [users, boardWithUsers]);
+
   return (
     <div className="board-container">
-      <div className="grid-container">
-        {board.map((tile) => (
-          <Tile
-            key={tile.id}
-            tile={tile}
-            setShowWebcam={setShowWebcam}
-            showWebcam={showWebcam}
-          />
-        ))}
-      </div>
+      <div className="grid-container">{mapOnBoard()}</div>
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
       )}
