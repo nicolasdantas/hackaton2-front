@@ -1,5 +1,4 @@
 * {
-  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
@@ -13,12 +12,41 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(8, 100px);
-  grid-template-rows: repeat(6, 100px);
+  grid-template-columns: repeat(27, 30px);
+  grid-template-rows: repeat(24, 30px);
 
-  .tile {
-    background-color: lightblue;
-    border: solid 1px darkcyan;
+  .grass {
+    background-color: #32cd32;
+    cursor: pointer;
+  }
+  .wall {
+    background-color: #696969;
+    cursor: default;
+  }
+  .table {
+    background-color: #49300e;
+    cursor: default;
+  }
+  .seat {
+    background-color: #d6ab71;
+    cursor: pointer;
+  }
+  .tree {
+    background-color: green;
+    cursor: default;
+  }
+  .other-users {
+    background-color: red;
+    cursor: default;
+  }
+  .user-logged {
+    background-color: violet;
+    position: relative;
+    z-index: 0;
+  }
+  .floor {
+    background-color: #dcdcdc;
+    cursor: pointer;
   }
 }
 
