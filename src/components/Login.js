@@ -69,14 +69,14 @@ export default function Login() {
   const history = useHistory();
   const { addToast } = useToasts();
 
-  const [userName, setUserName] = useState();
+  const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
   const symfonyLogin = "https://bfafce609ada.ngrok.io/api/login";
 
-  const onSubmit = async (data) => {
+  const onSubmit = async () => {
     try {
-      const res = await axios.post(symfonyLogin, data);
+      const res = await axios.post(symfonyLogin, { username, password });
       console.log(res);
       addToast("Vous êtes désormais connecté", {
         appareance: "error",
@@ -112,7 +112,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
-            value={userName}
+            value={username}
             onChange={(e) => setUserName(e.target.value)}
           />
           <TextField
