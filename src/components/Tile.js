@@ -9,7 +9,12 @@ import axios from 'axios';
 
 const baseUrl = 'https://526037743aa4.ngrok.io/api';
 
-const Tile = ({ tile, setShowWebcam, setStartGardenMusic }) => {
+const Tile = ({
+  tile,
+  setShowWebcam,
+  setStartGardenMusic,
+  setShowWhiteboard,
+}) => {
   const { type, room } = tile;
 
   const { userLogged, setUserLogged } = useContext(LoginContext);
@@ -26,6 +31,7 @@ const Tile = ({ tile, setShowWebcam, setStartGardenMusic }) => {
 
   const handleClick = async (event) => {
     setShowWebcam(false);
+    setShowWhiteboard(false);
     // setStartGardenMusic(false);
 
     if (
@@ -33,6 +39,9 @@ const Tile = ({ tile, setShowWebcam, setStartGardenMusic }) => {
       event.target.className.includes('seat')
     ) {
       setShowWebcam(true);
+    }
+    if (event.target.className.includes('meeting')) {
+      setShowWhiteboard(true);
     }
     if (
       event.target.className.includes('seat') ||

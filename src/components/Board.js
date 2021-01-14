@@ -7,6 +7,7 @@ import Webcam from './Webcam';
 import lodash from 'lodash';
 import GardenMusic from './GardenMusic';
 import BoardLoader from './Loader';
+import ConferenceRoom from './ConferenceRoom';
 // import { LoginContext } from '../components/contexts/LoginContext';
 
 const baseUrl = 'https://526037743aa4.ngrok.io/api';
@@ -27,6 +28,7 @@ const Board = () => {
 
   // handling special events
   const [showWebcam, setShowWebcam] = useState(false);
+  const [showWhiteboard, setShowWhiteboard] = useState(false);
   const eventSource = new EventSource(mercureUrl);
 
   const [startGardenMusic, setStartGardenMusic] = useState(false);
@@ -60,6 +62,7 @@ const Board = () => {
             tile={tile}
             setShowWebcam={setShowWebcam}
             setStartGardenMusic={setStartGardenMusic}
+            setShowWhiteboard={setShowWhiteboard}
             showWebcam={showWebcam}
           />
         );
@@ -96,6 +99,7 @@ const Board = () => {
               setShowWebcam={setShowWebcam}
               showWebcam={showWebcam}
               setStartGardenMusic={setStartGardenMusic}
+              setShowWhiteboard={setShowWhiteboard}
             />
           );
         }
@@ -108,6 +112,12 @@ const Board = () => {
       <div className='grid-container'>{mapBoard}</div>
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
+      )}
+      {showWhiteboard && (
+        <ConferenceRoom
+          setShowWhiteboard={setShowWhiteboard}
+          showWhiteboard={showWhiteboard}
+        />
       )}
 
       <GardenMusic
