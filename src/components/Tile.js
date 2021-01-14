@@ -25,6 +25,15 @@ const Tile = ({ tile, setShowWebcam }) => {
   }))(Tooltip);
 
   const handleClick = async (event) => {
+    setShowWebcam(false);
+
+    if (
+      event.target.className.includes('space') &&
+      event.target.className.includes('seat')
+    ) {
+      setShowWebcam(true);
+    }
+
     const moveResult = await axios.get(
       `${baseUrl}/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
     );
@@ -35,15 +44,6 @@ const Tile = ({ tile, setShowWebcam }) => {
         coordX: tile.coordX, // coords of the current tile, which knows its coords in the tile state
         coordY: tile.coordY,
       });
-
-      setShowWebcam(false);
-
-      if (
-        event.target.className.includes('space') &&
-        event.target.className.includes('seat')
-      ) {
-        setShowWebcam(true);
-      }
     }
   };
 

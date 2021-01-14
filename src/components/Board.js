@@ -63,7 +63,7 @@ const Board = () => {
   // add other users to the grid
   useEffect(() => {
     if (board.length > 0) {
-      const newBoard = lodash.cloneDeep(board); // state immuable
+      const newBoard = lodash.cloneDeep(board); 
 
       users.forEach((user) => {
         if (user.coordY && user.coordX) {
