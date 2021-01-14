@@ -20,13 +20,13 @@ const Board = () => {
 
   useEffect(() => {
     axios
-      .get('http://c86bd7d73c45.ngrok.io/api/users')
+      .get('http://c3a40f096263.ngrok.io/api/users')
       .then((res) => setUsers(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get('http://c86bd7d73c45.ngrok.io/api/tiles')
+      .get('http://c3a40f096263.ngrok.io/api/tiles')
       .then((res) => setBoard(res.data));
   }, []);
 
