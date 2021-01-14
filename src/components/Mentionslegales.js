@@ -26,7 +26,7 @@ const MentionLegale = () => {
           ou des propriétaires de ce site. Pour toute insertion de lien vers ce
           site ou échange de lien, nous contacter par courrier à l'adresse
           ci-dessus.
-        </p>      
+        </p>          
       </div>
     </div>
   );

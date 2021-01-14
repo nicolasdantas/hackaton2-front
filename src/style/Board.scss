@@ -1,0 +1,66 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(27, 25px);
+  grid-template-rows: repeat(24, 25px);
+
+  .grass {
+    background-color: #32cd32;
+    cursor: pointer;
+  }
+  .wall {
+    background-color: #696969;
+  }
+  .table {
+    background-color: #49300e;
+    cursor: pointer;
+  }
+  .seat {
+    background-color: #d6ab71;
+    cursor: pointer;
+  }
+  .tree {
+    background-color: green;
+    cursor: pointer;
+  }
+  .other-users {
+    background-color: red;
+  }
+  .user-logged{
+    background-color: violet;
+  }
+  .floor {
+    background-color: #dcdcdc;
+  }
+}
+
+// h1 { example to fix column start and end on an element
+
+//     grid-column-start: 1;
+
+//     grid-column-end: 2;
+
+// }
+
+// .container { example to use a template
+//     margin: 0;
+//     display: grid;
+//     grid-template-columns: 350px 450px;
+//     grid-template-rows: 300px 150px 200px;
+//     grid-template-areas:
+//         "title picture"
+//         "subtitle picture"
+//         "quote quote"
+//     ;
+// }
