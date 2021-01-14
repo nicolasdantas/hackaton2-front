@@ -10,6 +10,7 @@ import Team from "./components/team";
 import Login from "./components/Login";
 import Board from "./components/Board";
 import LoginProvider from "../src/components/contexts/LoginContext";
+import Home from "./components/cook/Home";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                     path="/mentionslegales"
                     component={MentionLegale}
                   />
+                  <Route exact path="/thread" component={Home} />
                 </Switch>
               </div>
               <Footer />
