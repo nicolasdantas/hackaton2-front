@@ -39,7 +39,7 @@
     margin-bottom: 20px;
 }
 
-.image-recipe{
+.image-avatar{
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -50,8 +50,33 @@
 }
 
 .cards-container{
+    display: flex;
+    flex-direction: row;
     width: 80%;
     border: 2px solid white;
     border-radius: 10px;
     margin-bottom: 20px;
+}
+
+.image-recipe{
+    width: 70px;
+    height: 70px;
+}
+
+.infos-recipes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-date{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    p{
+        margin-left: 100px;
+    }
 }
