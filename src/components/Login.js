@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
+import '../style/Login.scss'
 
 function Copyright() {
   return (
@@ -45,6 +46,20 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  input: {
+    '& .MuiInputLabel-outlined': {
+      color: 'white',
+    },
+    '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white',
+    },
+  },
+  login: {
+    color: 'white' ,
+  },
+  rememberMe:{
+    color:'white',
+  }
 }));
 
 export default function Login() {
@@ -59,10 +74,11 @@ export default function Login() {
           {/*          <LockOutlinedIcon /> */}
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          <p className="login">Login</p>
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            className={classes.input}
             variant="outlined"
             margin="normal"
             required
@@ -74,6 +90,7 @@ export default function Login() {
             autoFocus
           />
           <TextField
+            className={classes.input}
             variant="outlined"
             margin="normal"
             required
@@ -85,6 +102,7 @@ export default function Login() {
             autoComplete="current-password"
           />
           <FormControlLabel
+            className={classes.rememberMe}
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
@@ -101,12 +119,12 @@ export default function Login() {
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
-                Forgot password?
+              <p className="signup"> Forgot password?</p>
               </Link>
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+               <p className="signup">{"Don't have an account? Sign Up"}</p> 
               </Link>
             </Grid>
           </Grid>
