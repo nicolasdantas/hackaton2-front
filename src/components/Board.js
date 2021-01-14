@@ -1,107 +1,130 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import "../style/Board.scss";
-import Tile from "./Tile";
-import Webcam from "./Webcam";
-import { LoginContext } from "../components/contexts/LoginContext";
-import BoardLoader from "./Loader";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import '../style/Board.scss';
+import Tile from './Tile';
+import Webcam from './Webcam';
+import lodash from 'lodash';
+import GardenMusic from './GardenMusic';
+import BoardLoader from './Loader';
+// import { LoginContext } from '../components/contexts/LoginContext';
+
+const baseUrl = 'https://526037743aa4.ngrok.io/api';
+const mercureServer = 'http://2e3ccdecfa13.ngrok.io/.well-known/mercure';
+
+// trying out mercure
+const mercureUrl = new URL(mercureServer);
+mercureUrl.searchParams.append('topic', 'users');
+
+const mapBoard = [];
 
 const Board = () => {
   const [board, setBoard] = useState([]);
+
   const [boardWithUsers, setBoardWithUsers] = useState([]);
-  const [
-    boardWithUsersAndUserLogged,
-    setBoardWithUsersAndUserLogged,
-  ] = useState([]);
+
   const [users, setUsers] = useState([]);
+
+  // handling special events
   const [showWebcam, setShowWebcam] = useState(false);
+  const eventSource = new EventSource(mercureUrl);
 
-  const { userLogged } = useContext(LoginContext);
+  const [startGardenMusic, setStartGardenMusic] = useState(false);
 
-  useEffect(() => {
-    axios
-      .get("https://526037743aa4.ngrok.io/api/users")
-      .then((res) => setUsers(res.data));
+  eventSource.onmessage = (e) => {
+    setUsers(JSON.parse(e.data));
+  }; // setting users
+
+  useEffect(async () => {
+    await axios.get(baseUrl + '/users').then((res) => setUsers(res.data));
   }, []);
 
   useEffect(() => {
-    axios
-      .get("https://526037743aa4.ngrok.io/api/tiles")
-      .then((res) => setBoard(res.data));
+    // ici ça récupère la map
+    axios.get(baseUrl + '/tiles').then((res) => {
+      const newBoard = new Array(24).fill(null).map((value) => new Array(27));
+      res.data.forEach((tile) => {
+        newBoard[tile.coordY][tile.coordX] = tile;
+      });
+      setBoard(newBoard);
+    });
   }, []);
 
-  // map on the final array to create Tile components
-  const mapOnBoard = () => {
-    return boardWithUsersAndUserLogged.map((tile) => (
-      <Tile
-        key={tile.id}
-        tile={tile}
-        setShowWebcam={setShowWebcam}
-        showWebcam={showWebcam}
-      />
-    ));
-  };
+  useEffect(() => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        let tile = board[i][j];
+        mapBoard.push(
+          <Tile
+            key={'emptyMap' + tile.id}
+            tile={tile}
+            setShowWebcam={setShowWebcam}
+            setStartGardenMusic={setStartGardenMusic}
+            showWebcam={showWebcam}
+          />
+        );
+      }
+    }
+  }, [board]);
 
   // add other users to the grid
   useEffect(() => {
-    // initialise
-    setBoardWithUsers([...board]);
-    setBoardWithUsersAndUserLogged([...board]);
+    if (board.length > 0) {
+      const newBoard = lodash.cloneDeep(board);
 
-    for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < users.length; j++) {
-        if (
-          users[j].coordX === board[i].coordX &&
-          users[j].coordY === board[i].coordY
-        ) {
-          setBoardWithUsers(
-            board.map((obj) =>
-              obj.id === board[i].id
-                ? { ...obj, type: "other-users", user: users[j] }
-                : obj
-            )
+      users.forEach((user) => {
+        if (user.coordY && user.coordX) {
+          newBoard[user.coordY][user.coordX].type = 'user';
+          newBoard[user.coordY][user.coordX].user = user;
+        }
+      });
+
+      setBoardWithUsers(newBoard);
+    }
+  }, [users, board]);
+
+  useEffect(() => {
+    if (boardWithUsers.length > 0) {
+      mapBoard.length = 0;
+      for (let i = 0; i < boardWithUsers.length; i++) {
+        for (let j = 0; j < boardWithUsers[i].length; j++) {
+          let tile = boardWithUsers[i][j];
+          mapBoard.push(
+            <Tile
+              key={tile.id}
+              tile={tile}
+              setShowWebcam={setShowWebcam}
+              showWebcam={showWebcam}
+              setStartGardenMusic={setStartGardenMusic}
+            />
           );
         }
       }
     }
-    mapOnBoard();
-  }, [users, board]);
+  }, [boardWithUsers]);
 
-  // add user logged to the grid
-  useEffect(() => {
-    for (let i = 0; i < board.length; i++)
-      if (
-        board[i].coordX === userLogged.coordX &&
-        board[i].coordY === userLogged.coordY
-      ) {
-        setBoardWithUsersAndUserLogged(
-          boardWithUsers.map((obj) =>
-            obj.id === boardWithUsers[i].id
-              ? { ...obj, type: "user-logged" }
-              : obj
-          )
-        );
-      }
-  }, [userLogged, boardWithUsers]);
-
-  return boardWithUsersAndUserLogged.length !== 0 ? (
-    <div className="board-container">
-      <div className="grid-container">{mapOnBoard()}</div>
+  return board.length !== 0 ? (
+    <div className='board-container'>
+      <div className='grid-container'>{mapBoard}</div>
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
       )}
+
+      <GardenMusic
+        setPlaying={setStartGardenMusic}
+        playing={startGardenMusic}
+      />
     </div>
   ) : (
     <div
       style={{
-        position: "absolute",
-        left: "50%",
-        top: "50%",
-        transform: "translate(-50%, -50%)",
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
       }}
     >
-      <BoardLoader type="Circles" />
+      <BoardLoader type='Circles' />
     </div>
   );
 };

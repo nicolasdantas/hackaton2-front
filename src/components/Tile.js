@@ -5,11 +5,13 @@ import ImageAvatar from './Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 
-const Tile = ({ tile, setShowWebcam }) => {
+const baseUrl = 'https://526037743aa4.ngrok.io/api';
+
+const Tile = ({ tile, setShowWebcam, setStartGardenMusic }) => {
   const { type, room } = tile;
-  if (tile.type.includes('other-users')) {
-  }
+
   const { userLogged, setUserLogged } = useContext(LoginContext);
 
   const HtmlTooltip = withStyles((theme) => ({
@@ -22,20 +24,9 @@ const Tile = ({ tile, setShowWebcam }) => {
     },
   }))(Tooltip);
 
-  const handleClick = (event) => {
-    if (
-      event.target.className.includes('seat') ||
-      event.target.className.includes('grass') ||
-      event.target.className.includes('floor')
-    ) {
-      setUserLogged({
-        ...userLogged,
-        coordX: tile.coordX,
-        coordY: tile.coordY,
-      });
-    }
-
+  const handleClick = async (event) => {
     setShowWebcam(false);
+    // setStartGardenMusic(false);
 
     if (
       event.target.className.includes('space') &&
@@ -43,10 +34,29 @@ const Tile = ({ tile, setShowWebcam }) => {
     ) {
       setShowWebcam(true);
     }
-  };
+    if (
+      event.target.className.includes('seat') ||
+      event.target.className.includes('floor')
+    ) {
+      setStartGardenMusic(false);
+    }
 
-  // const [coordX, setCoordX] = useState(tile.coordX);
-  // const [coordY, setCoordY] = useState(tile.coordY);
+    if (event.target.className.includes('grass')) {
+      setStartGardenMusic(true);
+    }
+
+    const moveResult = await axios.get(
+      `${baseUrl}/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
+    );
+
+    if (moveResult.data !== false) {
+      setUserLogged({
+        ...userLogged,
+        coordX: tile.coordX, // coords of the current tile, which knows its coords in the tile state
+        coordY: tile.coordY,
+      });
+    }
+  };
 
   return (
     <>
@@ -56,7 +66,7 @@ const Tile = ({ tile, setShowWebcam }) => {
           handleClick(event);
         }}
       >
-        {type.includes('user-logged') && (
+        {/* {type.includes('user') && (
           <HtmlTooltip
             title={
               <React.Fragment>
@@ -73,8 +83,8 @@ const Tile = ({ tile, setShowWebcam }) => {
               <ImageAvatar image={userLogged.avatar} />
             </div>
           </HtmlTooltip>
-        )}
-        {type.includes('other-users') && (
+        )} */}
+        {type.includes('user') && (
           <HtmlTooltip
             title={
               <React.Fragment>
@@ -88,7 +98,7 @@ const Tile = ({ tile, setShowWebcam }) => {
             }
           >
             <div>
-              <ImageAvatar image={userLogged.avatar} />
+              <ImageAvatar image={tile.user.avatar} />
             </div>
           </HtmlTooltip>
         )}
