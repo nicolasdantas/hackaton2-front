@@ -18,6 +18,15 @@ const Board = () => {
 
   const { userLogged } = useContext(LoginContext);
 
+  // trying out mercure
+  const mercureUrl = new URL('https://a0ea5e6aec88.ngrok.io/hub');
+  mercureUrl.searchParams.append('topic', 'http://monsupertopic');
+
+  const eventSource = new EventSource(mercureUrl);
+
+  eventSource.onmessage = (e) => console.log(e);
+
+  ////////
   useEffect(() => {
     axios
       .get('http://c86bd7d73c45.ngrok.io/api/users')
