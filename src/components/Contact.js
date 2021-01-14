@@ -7,13 +7,13 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '100%',
-    '& > *': {
+    width: '100%', 
+     '& > *': {
       width: '25ch',
-    },
+    }, 
   },
   formControl: {
-    width: 200,
+ width: 200
   },
   btn: {
     backgroundColor: '#3f51b5',
@@ -23,15 +23,11 @@ const useStyles = makeStyles(() => ({
     },
   },
   input: {
-    width: '100%',
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#3f51b5',
+    '& .MuiInputLabel-outlined': {
+      color: 'white',
     },
-    '& .MuiOutlinedInput-input': {
-      color: '#3f51b5',
-    },
-    '& .MuiInputLabel-outlined.Mui-focused': {
-      color: '#3f51b5',
+    '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white',
     },
   },
 }));
@@ -52,7 +48,7 @@ const Contact = () => {
   return (
     <div className="container-contact-form">
       <form className="contactForm" onSubmit={handleSubmit(onSubmit)}>
-        <h1>Contactez-nous</h1>
+        <h2>Contactez-nous</h2>
         <div className="input-contact-form">
           <TextField
             className={classes.input}
