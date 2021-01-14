@@ -8,10 +8,12 @@ import Navbar from "./components/Navbar";
 import Team from "./components/team";
 import Login from "./components/Login";
 import Board from "./components/Board";
+import LoginProvider from './Contexts/LoginContext';
 
 function App() {
   return (
     <div>
+      <LoginProvider>
       <Router>
         <div className="App">
           <Navbar />
@@ -22,6 +24,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      </LoginProvider>
     </div>
   );
 }
