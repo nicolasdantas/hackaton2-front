@@ -78,7 +78,6 @@ const Board = () => {
           )
         );
       }
-    console.log(userLogged);
   }, [userLogged, boardWithUsers]);
 
   return (

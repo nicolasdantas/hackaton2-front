@@ -6,10 +6,9 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
-const Tile = ({ tile, setShowWebcam, showWebcam }) => {
+const Tile = ({ tile, setShowWebcam }) => {
   const { type, room } = tile;
   if (tile.type.includes("other-users")) {
-    console.log(tile.user.username);
   }
   const { userLogged, setUserLogged } = useContext(LoginContext);
 
