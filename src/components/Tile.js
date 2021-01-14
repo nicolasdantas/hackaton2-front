@@ -5,6 +5,7 @@ import ImageAvatar from './Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 
 const Tile = ({ tile, setShowWebcam }) => {
   const { type, room } = tile;
@@ -22,31 +23,34 @@ const Tile = ({ tile, setShowWebcam }) => {
     },
   }))(Tooltip);
 
-  const handleClick = (event) => {
-    if (
-      event.target.className.includes('seat') ||
-      event.target.className.includes('grass') ||
-      event.target.className.includes('floor')
-    ) {
+  const handleClick = async (event) => {
+    const data = {
+      userId: userLogged.id,
+      coordX: tile.coordX,
+      coordY: tile.coordY,
+    };
+
+    const moveResult = await axios.get(
+      `https://526037743aa4.ngrok.io/api/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
+    );
+
+    if (moveResult.data !== false) {
       setUserLogged({
         ...userLogged,
-        coordX: tile.coordX,
+        coordX: tile.coordX, // coords of the current tile, which knows its coords in the tile state
         coordY: tile.coordY,
       });
-    }
 
-    setShowWebcam(false);
+      setShowWebcam(false);
 
-    if (
-      event.target.className.includes('space') &&
-      event.target.className.includes('seat')
-    ) {
-      setShowWebcam(true);
+      if (
+        event.target.className.includes('space') &&
+        event.target.className.includes('seat')
+      ) {
+        setShowWebcam(true);
+      }
     }
   };
-
-  // const [coordX, setCoordX] = useState(tile.coordX);
-  // const [coordY, setCoordY] = useState(tile.coordY);
 
   return (
     <>
@@ -56,7 +60,7 @@ const Tile = ({ tile, setShowWebcam }) => {
           handleClick(event);
         }}
       >
-        {type.includes('user-logged') && (
+        {/* {type.includes('user') && (
           <HtmlTooltip
             title={
               <React.Fragment>
@@ -73,8 +77,8 @@ const Tile = ({ tile, setShowWebcam }) => {
               <ImageAvatar image={userLogged.avatar} />
             </div>
           </HtmlTooltip>
-        )}
-        {type.includes('other-users') && (
+        )} */}
+        {type.includes('user') && (
           <HtmlTooltip
             title={
               <React.Fragment>
