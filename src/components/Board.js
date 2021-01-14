@@ -4,25 +4,27 @@ import axios from 'axios';
 import '../style/Board.scss';
 import Tile from './Tile';
 import Webcam from './Webcam';
+import lodash from 'lodash';
 import { LoginContext } from '../components/contexts/LoginContext';
 
+const baseUrl = 'https://526037743aa4.ngrok.io/api';
+const mercureServer = 'http://2e3ccdecfa13.ngrok.io/.well-known/mercure';
+
 // trying out mercure
-const mercureUrl = new URL('http://2e3ccdecfa13.ngrok.io/.well-known/mercure');
+const mercureUrl = new URL(mercureServer);
 mercureUrl.searchParams.append('topic', 'users');
 
 const eventSource = new EventSource(mercureUrl);
 
+const mapBoard = [];
+
 const Board = () => {
   const [board, setBoard] = useState([]);
+
   const [boardWithUsers, setBoardWithUsers] = useState([]);
-  // const [
-  //   boardWithUsersAndUserLogged,
-  //   setBoardWithUsersAndUserLogged,
-  // ] = useState([]);
+
   const [users, setUsers] = useState([]);
   const [showWebcam, setShowWebcam] = useState(false);
-
-  const { userLogged } = useContext(LoginContext);
 
   eventSource.onmessage = (e) => {
     console.log(JSON.parse(e.data));
@@ -30,56 +32,75 @@ const Board = () => {
   }; // setting users
 
   useEffect(() => {
-    // ici ça récupère la map
-    axios
-      .get('https://526037743aa4.ngrok.io/api/tiles')
-      .then((res) => setBoard(res.data));
+    axios.get(baseUrl + '/users').then((res) => setUsers(res.data));
   }, []);
 
-  // map on the final array to create Tile components
-  const mapOnBoard = () => {
-    console.log(users);
-    return boardWithUsers.map((tile) => (
-      <Tile
-        key={tile.id}
-        tile={tile}
-        setShowWebcam={setShowWebcam}
-        showWebcam={showWebcam}
-      />
-    ));
-  };
+  useEffect(() => {
+    // ici ça récupère la map
+    axios.get(baseUrl + '/tiles').then((res) => {
+      const newBoard = new Array(24).fill(null).map((value) => new Array(27));
+      res.data.forEach((tile) => {
+        newBoard[tile.coordY][tile.coordX] = tile;
+      });
+      setBoard(newBoard);
+    });
+  }, []);
+
+  useEffect(() => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        let tile = board[i][j];
+        mapBoard.push(
+          <Tile
+            key={tile.id}
+            tile={tile}
+            setShowWebcam={setShowWebcam}
+            showWebcam={showWebcam}
+          />
+        );
+      }
+    }
+  }, [board]);
 
   // add other users to the grid
   useEffect(() => {
-    // initialise
-    if (boardWithUsers.length === 0) {
-      setBoardWithUsers([...board]);
-    }
-
-    // setBoardWithUsersAndUserLogged([...board]);
-
-    for (let i = 0; i < board.length; i++) {
-      for (let j = 0; j < users.length; j++) {
-        if (
-          users[j].coordX === board[i].coordX &&
-          users[j].coordY === board[i].coordY
-        ) {
-          setBoardWithUsers(
-            board.map((obj) =>
-              obj.id === board[i].id
-                ? { ...obj, type: 'user', user: users[j] }
-                : obj
-            )
-          );
+    if (board.length > 0) {
+      const newBoard = lodash.cloneDeep(board); // state immuable
+      console.log(newBoard);
+      users.forEach((user) => {
+        if (user.coordY && user.coordX) {
+          newBoard[user.coordY][user.coordX].type = 'user';
+          newBoard[user.coordY][user.coordX].user = user;
         }
-      }
+      });
+
+      setBoardWithUsers(newBoard);
     }
   }, [users, board]);
 
   useEffect(() => {
-    console.log('useEffect 2', boardWithUsers);
-    mapOnBoard();
+    if (boardWithUsers.length > 0) {
+      mapBoard.length = 0;
+      for (let i = 0; i < boardWithUsers.length; i++) {
+        for (let j = 0; j < boardWithUsers[i].length; j++) {
+          let tile = boardWithUsers[i][j];
+          mapBoard.push(
+            <Tile
+              key={tile.id}
+              tile={tile}
+              setShowWebcam={setShowWebcam}
+              showWebcam={showWebcam}
+            />
+          );
+        }
+      }
+    }
   }, [boardWithUsers]);
+
+  // useEffect(() => {
+  //   console.log('useEffect 2', boardWithUsers);
+  //   mapOnBoard();
+  // }, [boardWithUsers]);
 
   // add user logged to the grid
   // useEffect(() => {
@@ -100,7 +121,7 @@ const Board = () => {
 
   return (
     <div className='board-container'>
-      <div className='grid-container'>{mapOnBoard()}</div>
+      <div className='grid-container'>{mapBoard}</div>
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
       )}

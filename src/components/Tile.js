@@ -56,7 +56,7 @@ const Tile = ({ tile, setShowWebcam }) => {
           handleClick(event);
         }}
       >
-        {type.includes('user') && (
+        {/* {type.includes('user') && (
           <HtmlTooltip
             title={
               <React.Fragment>
@@ -73,7 +73,7 @@ const Tile = ({ tile, setShowWebcam }) => {
               <ImageAvatar image={userLogged.avatar} />
             </div>
           </HtmlTooltip>
-        )}
+        )} */}
         {type.includes('user') && (
           <HtmlTooltip
             title={
@@ -88,7 +88,7 @@ const Tile = ({ tile, setShowWebcam }) => {
             }
           >
             <div>
-              <ImageAvatar image={userLogged.avatar} />
+              <ImageAvatar image={tile.user.avatar} />
             </div>
           </HtmlTooltip>
         )}
