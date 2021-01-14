@@ -6,6 +6,7 @@ import Tile from "./Tile";
 import Webcam from "./Webcam";
 import { LoginContext } from "../components/contexts/LoginContext";
 import BoardLoader from "./Loader";
+import Jukebox from "./jukebox";
 
 const Board = () => {
   const [board, setBoard] = useState([]);
@@ -16,7 +17,7 @@ const Board = () => {
   ] = useState([]);
   const [users, setUsers] = useState([]);
   const [showWebcam, setShowWebcam] = useState(false);
-
+  const [showMusic, setShowMusic] = useState(false);
   const { userLogged } = useContext(LoginContext);
 
   useEffect(() => {
@@ -39,6 +40,8 @@ const Board = () => {
         tile={tile}
         setShowWebcam={setShowWebcam}
         showWebcam={showWebcam}
+        setShowMusic={setShowMusic}
+        showMusic={showMusic}
       />
     ));
   };
@@ -91,6 +94,7 @@ const Board = () => {
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
       )}
+      {showMusic && <Jukebox />}
     </div>
   ) : (
     <div

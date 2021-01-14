@@ -19,7 +19,7 @@ const AudioPlayer = () => {
   ];
 
   return (
-    <section style={{ width: "35%" }}>
+    <section style={{ width: "35%", marginLeft: "80px" }}>
       <h1 style={{ color: "white", textAlign: "center" }}>
         Choose a kind of music !
       </h1>
