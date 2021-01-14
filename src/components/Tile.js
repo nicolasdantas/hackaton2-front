@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Tile = ({ tile, setShowWebcam, showWebcam }) => {
   const { type, room } = tile;
@@ -8,6 +8,9 @@ const Tile = ({ tile, setShowWebcam, showWebcam }) => {
       setShowWebcam(true);
     }
   };
+
+  const [coordX, setCoordX] = useState(tile.coordX);
+  const [coordY, setCoordY] = useState(tile.coordY);
 
   return (
     <div
