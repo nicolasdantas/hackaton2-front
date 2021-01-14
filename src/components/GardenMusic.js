@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-const url = 'http://streaming.tdiradio.com:8000/house.mp3';
+import React, { useEffect } from 'react';
+const url = 'http://104.251.118.50:8626/;stream/1';
 const audio = new Audio(url);
 
 // const useAudio = (url) => {

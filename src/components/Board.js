@@ -5,6 +5,7 @@ import '../style/Board.scss';
 import Tile from './Tile';
 import Webcam from './Webcam';
 import lodash from 'lodash';
+import GardenMusic from './GardenMusic';
 // import { LoginContext } from '../components/contexts/LoginContext';
 
 const baseUrl = 'https://526037743aa4.ngrok.io/api';
@@ -15,7 +16,6 @@ const mercureUrl = new URL(mercureServer);
 mercureUrl.searchParams.append('topic', 'users');
 
 const mapBoard = [];
-import GardenMusic from './GardenMusic';
 
 const Board = () => {
   const [board, setBoard] = useState([]);
@@ -58,6 +58,7 @@ const Board = () => {
             key={'emptyMap' + tile.id}
             tile={tile}
             setShowWebcam={setShowWebcam}
+            setStartGardenMusic={setStartGardenMusic}
             showWebcam={showWebcam}
           />
         );
@@ -93,6 +94,7 @@ const Board = () => {
               tile={tile}
               setShowWebcam={setShowWebcam}
               showWebcam={showWebcam}
+              setStartGardenMusic={setStartGardenMusic}
             />
           );
         }
