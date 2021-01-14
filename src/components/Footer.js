@@ -1,8 +1,11 @@
 import React from 'react';
+import { useLocation } from "react-router-dom";
 import '../style/Footer.scss';
 
 const Footer = () => {
+    const location = useLocation();
     return(
+        location.pathname !== "/" &&
         <footer>
             <div className="container-footer">
                 <div>

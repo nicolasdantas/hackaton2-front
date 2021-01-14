@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ContinuousSlider from "./VolumeSlider";
 import "../style/Navbar.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Welcome from "./Welcome";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +34,9 @@ export default function Navbar() {
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" className={classes.title}>
+              <Link style={{color:'white', textDecoration:'none'}} to="/board">
               ༼ つ ◕◕ ༽つ TAKE MY ENERGY ༼ つ ◕◕ ༽つ
+              </Link>
             </Typography>
             <div className="settings">
             <div className="slider">
