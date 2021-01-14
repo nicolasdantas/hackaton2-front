@@ -16,7 +16,7 @@ const user = [{
 export const LoginContext = createContext();
 
 export default function LoginProvider({ children }) {
-  const [userLogged, setUserLogged] = useState(user);
+  const [userLogged, setUserLogged] = useState(user[0]);
 
   return (
     <LoginContext.Provider value={{ userLogged, setUserLogged }}>
