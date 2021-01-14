@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ImageAvatar({ image }) {
   const classes = useStyles();
-  console.log(image);
   return (
     <div className={classes.root}>
       <Avatar alt={image} src={image} />
