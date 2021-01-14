@@ -24,11 +24,7 @@ const Tile = ({ tile, setShowWebcam }) => {
   }))(Tooltip);
 
   const handleClick = async (event) => {
-    const data = {
-      userId: userLogged.id,
-      coordX: tile.coordX,
-      coordY: tile.coordY,
-    };
+    console.log(userLogged);
 
     const moveResult = await axios.get(
       `https://526037743aa4.ngrok.io/api/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
@@ -60,7 +56,7 @@ const Tile = ({ tile, setShowWebcam }) => {
           handleClick(event);
         }}
       >
-        {/* {type.includes('user') && (
+        {type.includes('user') && (
           <HtmlTooltip
             title={
               <React.Fragment>
@@ -77,7 +73,7 @@ const Tile = ({ tile, setShowWebcam }) => {
               <ImageAvatar image={userLogged.avatar} />
             </div>
           </HtmlTooltip>
-        )} */}
+        )}
         {type.includes('user') && (
           <HtmlTooltip
             title={

@@ -30,6 +30,7 @@ const Board = () => {
   }; // setting users
 
   useEffect(() => {
+    // ici ça récupère la map
     axios
       .get('https://526037743aa4.ngrok.io/api/tiles')
       .then((res) => setBoard(res.data));
@@ -37,6 +38,7 @@ const Board = () => {
 
   // map on the final array to create Tile components
   const mapOnBoard = () => {
+    console.log(users);
     return boardWithUsers.map((tile) => (
       <Tile
         key={tile.id}
@@ -50,7 +52,10 @@ const Board = () => {
   // add other users to the grid
   useEffect(() => {
     // initialise
-    setBoardWithUsers([...board]);
+    if (boardWithUsers.length === 0) {
+      setBoardWithUsers([...board]);
+    }
+
     // setBoardWithUsersAndUserLogged([...board]);
 
     for (let i = 0; i < board.length; i++) {
@@ -69,8 +74,12 @@ const Board = () => {
         }
       }
     }
-    mapOnBoard();
   }, [users, board]);
+
+  useEffect(() => {
+    console.log('useEffect 2', boardWithUsers);
+    mapOnBoard();
+  }, [boardWithUsers]);
 
   // add user logged to the grid
   // useEffect(() => {
