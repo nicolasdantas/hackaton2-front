@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const baseUrl = 'https://526037743aa4.ngrok.io/api';
 
-const Tile = ({ tile, setShowWebcam }) => {
+const Tile = ({ tile, setShowWebcam, setStartGardenMusic }) => {
   const { type, room } = tile;
 
   const { userLogged, setUserLogged } = useContext(LoginContext);
@@ -26,12 +26,23 @@ const Tile = ({ tile, setShowWebcam }) => {
 
   const handleClick = async (event) => {
     setShowWebcam(false);
+    // setStartGardenMusic(false);
 
     if (
       event.target.className.includes('space') &&
       event.target.className.includes('seat')
     ) {
       setShowWebcam(true);
+    }
+    if (
+      event.target.className.includes('seat') ||
+      event.target.className.includes('floor')
+    ) {
+      setStartGardenMusic(false);
+    }
+
+    if (event.target.className.includes('grass')) {
+      setStartGardenMusic(true);
     }
 
     const moveResult = await axios.get(

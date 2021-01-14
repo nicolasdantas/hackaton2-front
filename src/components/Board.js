@@ -15,6 +15,7 @@ const mercureUrl = new URL(mercureServer);
 mercureUrl.searchParams.append('topic', 'users');
 
 const mapBoard = [];
+import GardenMusic from './GardenMusic';
 
 const Board = () => {
   const [board, setBoard] = useState([]);
@@ -22,8 +23,12 @@ const Board = () => {
   const [boardWithUsers, setBoardWithUsers] = useState([]);
 
   const [users, setUsers] = useState([]);
+
+  // handling special events
   const [showWebcam, setShowWebcam] = useState(false);
   const eventSource = new EventSource(mercureUrl);
+
+  const [startGardenMusic, setStartGardenMusic] = useState(false);
 
   eventSource.onmessage = (e) => {
     setUsers(JSON.parse(e.data));
@@ -63,7 +68,7 @@ const Board = () => {
   // add other users to the grid
   useEffect(() => {
     if (board.length > 0) {
-      const newBoard = lodash.cloneDeep(board); 
+      const newBoard = lodash.cloneDeep(board);
 
       users.forEach((user) => {
         if (user.coordY && user.coordX) {
@@ -101,6 +106,11 @@ const Board = () => {
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
       )}
+
+      <GardenMusic
+        setPlaying={setStartGardenMusic}
+        playing={startGardenMusic}
+      />
     </div>
   );
 };
