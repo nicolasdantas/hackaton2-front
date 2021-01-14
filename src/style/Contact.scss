@@ -1,12 +1,13 @@
 .container-contact-form {
     .contactForm{
-      width:70%
+      width:100%;
     }
     display: flex;
     justify-content: center;
     text-align: center;
-    h1{
+    h2{
       margin-bottom: 2rem;
+      color: white;
     }
     form {
       margin-top: 50px;
@@ -20,10 +21,10 @@
     }
   }
   
-    @media screen and (min-width: 1024px) {
+/*     @media screen and (min-width: 1024px) {
       .container-contact-form {
         .contactForm{
           width:30%
         }
       }
-    }
+    } */
