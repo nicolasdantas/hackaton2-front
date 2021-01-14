@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
   papers: {
     padding: 10,
-    backgroundColor: "#ffd9b3",
+    backgroundColor: "#829FD9",
     boxShadow: "0 1px 3px rgba(50,62,64,0.12), 0 1px 2px rgba(50,62,64,0.24)",
     transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",
     "&:hover": {

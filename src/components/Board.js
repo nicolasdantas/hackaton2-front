@@ -5,6 +5,7 @@ import '../style/Board.scss';
 import Tile from './Tile';
 import Webcam from './Webcam';
 import { LoginContext } from '../components/contexts/LoginContext';
+import BoardLoader from './Loader';
 
 const Board = () => {
   const [board, setBoard] = useState([]);
@@ -20,13 +21,13 @@ const Board = () => {
 
   useEffect(() => {
     axios
-      .get('http://c3a40f096263.ngrok.io/api/users')
+      .get('https://526037743aa4.ngrok.io/api/users')
       .then((res) => setUsers(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get('http://c3a40f096263.ngrok.io/api/tiles')
+      .get('https://526037743aa4.ngrok.io/api/tiles')
       .then((res) => setBoard(res.data));
   }, []);
 
@@ -84,12 +85,23 @@ const Board = () => {
       }
   }, [userLogged, boardWithUsers]);
 
-  return (
+  return boardWithUsersAndUserLogged.length !== 0 ? (
     <div className='board-container'>
       <div className='grid-container'>{mapOnBoard()}</div>
       {showWebcam && (
         <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
       )}
+    </div>
+  ) : (
+    <div
+      style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <BoardLoader type='Circles' />
     </div>
   );
 };
