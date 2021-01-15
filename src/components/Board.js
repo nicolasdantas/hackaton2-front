@@ -1,27 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import '../style/Board.scss';
-import Tile from './Tile';
-import Webcam from './Webcam';
-import lodash from 'lodash';
-import GardenMusic from './GardenMusic';
-import BoardLoader from './Loader';
-import ConferenceRoom from './ConferenceRoom';
-import UserBox from './UserBox';
-import { useToasts } from 'react-toast-notifications';
-import { LoginContext } from '../components/contexts/LoginContext';
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import "../style/Board.scss";
+import Tile from "./Tile";
+import Webcam from "./Webcam";
+import lodash from "lodash";
+import GardenMusic from "./GardenMusic";
+import BoardLoader from "./Loader";
+import ConferenceRoom from "./ConferenceRoom";
+import UserBox from "./UserBox";
+import { useToasts } from "react-toast-notifications";
+import { LoginContext } from "../components/contexts/LoginContext";
 // import { MissedVideoCall } from "@material-ui/icons";
-import Jukebox from './jukebox';
-import Actu from './cook/Actu';
+import Jukebox from "./jukebox";
+import Actu from "./cook/Actu";
 // import { LoginContext } from '../components/contexts/LoginContext';
 
-const baseUrl = 'https://526037743aa4.ngrok.io/api';
-const mercureServer = 'http://2e3ccdecfa13.ngrok.io/.well-known/mercure';
+const baseUrl = "https://526037743aa4.ngrok.io/api";
+const mercureServer = "http://2e3ccdecfa13.ngrok.io/.well-known/mercure";
 
 // trying out mercure
 const mercureUrl = new URL(mercureServer);
-mercureUrl.searchParams.append('topic', 'users');
+mercureUrl.searchParams.append("topic", "users");
 
 const mapBoard = [];
 
@@ -49,16 +49,16 @@ const Board = () => {
   }; // setting users
 
   useEffect(async () => {
-    await axios.get(baseUrl + '/users').then((res) => setUsers(res.data));
-    addToast('Cliquez pour faire apparaitre vos collègues', {
-      appearance: 'info',
+    await axios.get(baseUrl + "/users").then((res) => setUsers(res.data));
+    addToast("Cliquez pour faire apparaitre vos collègues", {
+      appearance: "info",
       autoDismiss: true,
     });
-  }, []);
+  }, [userLogged]);
 
   useEffect(() => {
     // ici ça récupère la map
-    axios.get(baseUrl + '/tiles').then((res) => {
+    axios.get(baseUrl + "/tiles").then((res) => {
       const newBoard = new Array(24).fill(null).map((value) => new Array(27));
       res.data.forEach((tile) => {
         newBoard[tile.coordY][tile.coordX] = tile;
@@ -73,7 +73,7 @@ const Board = () => {
         let tile = board[i][j];
         mapBoard.push(
           <Tile
-            key={'emptyMap' + tile.id}
+            key={"emptyMap" + tile.id}
             tile={tile}
             setShowWebcam={setShowWebcam}
             setStartGardenMusic={setStartGardenMusic}
@@ -94,7 +94,7 @@ const Board = () => {
 
       users.forEach((user) => {
         if (user.coordY && user.coordX) {
-          newBoard[user.coordY][user.coordX].type = 'user';
+          newBoard[user.coordY][user.coordX].type = "user";
           newBoard[user.coordY][user.coordX].user = user;
         }
       });
@@ -128,11 +128,11 @@ const Board = () => {
 
   return board.length !== 0 ? (
     <>
-      <div className='board-container'>
+      <div className="board-container">
         {!showWebcam && !showWhiteboard && !showRecipe && (
           <UserBox user={userLogged} />
         )}
-        <div className='grid-container'>{mapBoard}</div>
+        <div className="grid-container">{mapBoard}</div>
         {showWebcam && (
           <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
         )}
@@ -165,13 +165,13 @@ const Board = () => {
   ) : (
     <div
       style={{
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
       }}
     >
-      <BoardLoader type='Circles' />
+      <BoardLoader type="Circles" />
     </div>
   );
 };

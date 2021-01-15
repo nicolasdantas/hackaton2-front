@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,7 +8,8 @@ import ContinuousSlider from "./VolumeSlider";
 import "../style/Navbar.scss";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import Welcome from "./Welcome";
-import logo from '../2530821-256.png'
+import logo from "../2530821-256.png";
+import { LoginContext } from "../components/contexts/LoginContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,39 +21,45 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Navbar() {
-  const history= useHistory();
+  const { setUserLogged } = useContext(LoginContext);
+  const history = useHistory();
   const logout = () => {
-    history.push('/');
+    history.push("/");
+    setUserLogged([]);
   };
 
   const location = useLocation();
   const classes = useStyles();
 
   return (
-    location.pathname !== '/' && (
-      <nav className='navbar-wrapper'>
+    location.pathname !== "/" && (
+      <nav className="navbar-wrapper">
         <div className={classes.root}>
-          <AppBar position='static'>
+          <AppBar position="static">
             <Toolbar>
-            <img src={logo} style={{width: '40px', marginRight: '10px'}} alt={logo}/>
-              <Typography variant='h6' className={classes.title}>
+              <img
+                src={logo}
+                style={{ width: "40px", marginRight: "10px" }}
+                alt={logo}
+              />
+              <Typography variant="h6" className={classes.title}>
                 <Link
-                  style={{ color: 'white', textDecoration: 'none' }}
-                  to='/board'
+                  style={{ color: "white", textDecoration: "none" }}
+                  to="/board"
                 >
                   SimOffice
                 </Link>
               </Typography>
-              <div className='settings'>
-                <div className='slider'>
+              <div className="settings">
+                <div className="slider">
                   <Welcome />
                 </div>
-                <div className='slider'>
+                <div className="slider">
                   <ContinuousSlider />
                 </div>
                 <ExitToAppIcon
                   onClick={() => logout()}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 />
               </div>
             </Toolbar>

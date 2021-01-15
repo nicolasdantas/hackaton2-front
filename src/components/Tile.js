@@ -72,7 +72,7 @@ const Tile = ({
     }
 
     const moveResult = await axios.get(
-      `${baseUrl}/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
+      `${baseUrl}/users/move/${userLogged.username}/${tile.coordX}/${tile.coordY}`
     );
     // ${userLogged.id}
 
