@@ -5,7 +5,7 @@ const Welcome = () => {
   const { userLogged } = useContext(LoginContext);
   return (
     <div>
-      <h3>Welcome {userLogged.username}</h3>
+      <h3>Good to see you {userLogged.username}</h3>
     </div>
   );
 };

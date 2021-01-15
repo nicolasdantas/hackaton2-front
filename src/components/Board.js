@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import BoardLoader from "./Loader";
-import Jukebox from "./jukebox";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/Board.scss";
@@ -8,7 +6,11 @@ import Tile from "./Tile";
 import Webcam from "./Webcam";
 import lodash from "lodash";
 import GardenMusic from "./GardenMusic";
+import BoardLoader from "./Loader";
 import ConferenceRoom from "./ConferenceRoom";
+import { useToasts } from "react-toast-notifications";
+import { MissedVideoCall } from "@material-ui/icons";
+import Jukebox from "./jukebox";
 // import { LoginContext } from '../components/contexts/LoginContext';
 
 const baseUrl = "https://526037743aa4.ngrok.io/api";
@@ -22,6 +24,7 @@ const mapBoard = [];
 
 const Board = () => {
   const [board, setBoard] = useState([]);
+  const { addToast } = useToasts();
 
   const [boardWithUsers, setBoardWithUsers] = useState([]);
 
@@ -41,6 +44,10 @@ const Board = () => {
 
   useEffect(async () => {
     await axios.get(baseUrl + "/users").then((res) => setUsers(res.data));
+    addToast("Cliquez pour faire apparaitre vos collègues", {
+      appearance: "success",
+      autoDismiss: true,
+    });
   }, []);
 
   useEffect(() => {
@@ -112,24 +119,35 @@ const Board = () => {
   }, [boardWithUsers]);
 
   return board.length !== 0 ? (
-    <div className="board-container">
-      <div className="grid-container">{mapBoard}</div>
-      {showWebcam && (
-        <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
-      )}
-      {showMusic && <Jukebox />}
-      {showWhiteboard && (
-        <ConferenceRoom
-          setShowWhiteboard={setShowWhiteboard}
-          showWhiteboard={showWhiteboard}
-        />
-      )}
+    <>
+      <div className="board-container">
+        <div className="grid-container">{mapBoard}</div>
+        {showWebcam && (
+          <Webcam setShowWebcam={setShowWebcam} showWebcam={showWebcam} />
+        )}
+        {showMusic && <Jukebox />}
+        {showWhiteboard && (
+          <ConferenceRoom
+            setShowWhiteboard={setShowWhiteboard}
+            showWhiteboard={showWhiteboard}
+          />
+        )}
 
-      <GardenMusic
-        setPlaying={setStartGardenMusic}
-        playing={startGardenMusic}
-      />
-    </div>
+        <GardenMusic
+          setPlaying={setStartGardenMusic}
+          playing={startGardenMusic}
+        />
+      </div>
+      {/* <section style={{ color: "white", textAlign: "center" }}>
+        <h1>
+          Welcome to your virtual office and discover the new teleworking with
+          SimOffice !
+        </h1>
+        <h2>Want to relax ? Take a breath in the garden ... </h2>
+        <h2>Some music ? Go to the rest rooms ! </h2>
+        <h2>Need to draw something ? Sit down in the meeting room !</h2>
+      </section> */}
+    </>
   ) : (
     <div
       style={{

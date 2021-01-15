@@ -15,7 +15,7 @@ import { ToastProvider } from "react-toast-notifications";
 
 function App() {
   return (
-    <ToastProvider placement="top-right">
+    <ToastProvider placement='bottom-center'>
       <div>
         <LoginProvider>
           <VolumeProvider>

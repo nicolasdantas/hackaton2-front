@@ -9,6 +9,7 @@ import "../style/Navbar.scss";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import Welcome from "./Welcome";
 import { VolumeContext } from "../components/contexts/VolumeContext";
+import logo from '../2530821-256.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,29 +30,30 @@ export default function Navbar() {
   const classes = useStyles();
 
   return (
-    location.pathname !== "/" && (
-      <nav className="navbar-wrapper">
+    location.pathname !== '/' && (
+      <nav className='navbar-wrapper'>
         <div className={classes.root}>
-          <AppBar position="static">
+          <AppBar position='static'>
             <Toolbar>
-              <Typography variant="h6" className={classes.title}>
+            <img src={logo} style={{width: '40px', marginRight: '10px'}} alt={logo}/>
+              <Typography variant='h6' className={classes.title}>
                 <Link
-                  style={{ color: "white", textDecoration: "none" }}
-                  to="/board"
+                  style={{ color: 'white', textDecoration: 'none' }}
+                  to='/board'
                 >
-                  ༼ つ ◕◕ ༽つ TAKE MY ENERGY ༼ つ ◕◕ ༽つ
+                  SimOffice
                 </Link>
               </Typography>
-              <div className="settings">
-                <div className="slider">
+              <div className='settings'>
+                <div className='slider'>
                   <Welcome />
                 </div>
-                <div className="slider">
-                  <ContinuousSlider/>
+                <div className='slider'>
+                  <ContinuousSlider />
                 </div>
                 <ExitToAppIcon
                   onClick={() => logout()}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: 'pointer' }}
                 />
               </div>
             </Toolbar>

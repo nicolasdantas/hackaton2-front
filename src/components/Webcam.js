@@ -1,12 +1,12 @@
 import React from 'react';
-import './Webcam.scss';
+import '../style/Webcam.scss';
 import Webcam from 'react-webcam';
 import CloseIcon from '@material-ui/icons/Close';
 
 const WebcamComponent = ({ showWebcam, setShowWebcam }) => {
   const videoConstraints = {
-    width: 320,
-    height: 240,
+    width: 480,
+    height: 360,
   };
 
   return (
