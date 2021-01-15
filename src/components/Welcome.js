@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { LoginContext } from '../components/contexts/LoginContext';
+import React, { useContext } from "react";
+import { LoginContext } from "../components/contexts/LoginContext";
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -8,9 +8,11 @@ function capitalizeFirstLetter(string) {
 const Welcome = () => {
   const { userLogged } = useContext(LoginContext);
   return (
-    <div>
-      <h3>Bienvenue {capitalizeFirstLetter(userLogged.username)} !</h3>
-    </div>
+    userLogged.length !== 0 && (
+      <div>
+        <h3>Bienvenue {capitalizeFirstLetter(userLogged.username)} !</h3>
+      </div>
+    )
   );
 };
 

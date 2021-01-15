@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -16,6 +16,7 @@ import Container from "@material-ui/core/Container";
 import { useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import "../style/Login.scss";
+import { LoginContext } from "../components/contexts/LoginContext";
 
 function Copyright() {
   return (
@@ -65,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Login() {
+  const { userLogged, setUserLogged } = useContext(LoginContext);
   const classes = useStyles();
   const history = useHistory();
   const { addToast } = useToasts();
@@ -75,9 +77,18 @@ export default function Login() {
   const symfonyLogin = `http://d6e9432fc7eb.ngrok.io/api/login?username=${username}&password=${password}`;
 
   const onSubmit = async () => {
+    setUserLogged([]);
     try {
-      const res = await axios.post(symfonyLogin);
-      console.log(res);
+      setUserLogged({
+        username: username,
+        roles: ["ROLE_USER"],
+        password: password,
+        salt: null,
+        coordX: 4,
+        coordY: 8,
+        avatar:
+          "https://img.favpng.com/18/19/24/nyan-cat-youtube-png-favpng-G1cs1DiEzDQhHaAgXduVYB2Dp.jpg",
+      });
       addToast("Vous êtes désormais connecté", {
         appearance: "success",
         autoDismiss: true,
