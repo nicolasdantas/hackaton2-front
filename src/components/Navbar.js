@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,7 +8,6 @@ import ContinuousSlider from "./VolumeSlider";
 import "../style/Navbar.scss";
 import { useLocation, useHistory, Link } from "react-router-dom";
 import Welcome from "./Welcome";
-import { VolumeContext } from "../components/contexts/VolumeContext";
 import logo from '../2530821-256.png'
 
 const useStyles = makeStyles((theme) => ({
