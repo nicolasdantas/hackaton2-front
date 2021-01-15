@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { VolumeContext } from "../components/contexts/VolumeContext";
+
 const url = 'http://104.251.118.50:8626/;stream/1';
 const audio = new Audio(url);
+
 
 // const useAudio = (url) => {
 //   const [audio] = useState(new Audio(url));
@@ -23,6 +26,8 @@ const audio = new Audio(url);
 // };
 
 const Player = ({ playing, setPlaying }) => {
+  const {volume} = useContext(VolumeContext)
+  audio.volume=volume
   //   const [playing, toggle] = useAudio(url);
 
   //   const [audio] = useState(new Audio(url));
