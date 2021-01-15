@@ -1,3 +1,9 @@
+import Navbar from "./components/Navbar";
+import Team from "./components/team";
+import Login from "./components/Login";
+import Board from "./components/Board";
+import AudioPlayer from "./components/AudioPlayer";
+import LoginProvider from "../src/components/contexts/LoginContext";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import MentionLegale from "./components/Mentionslegales";
@@ -5,12 +11,6 @@ import "./app.scss";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
-import Navbar from "./components/Navbar";
-import Team from "./components/team";
-import Login from "./components/Login";
-import Board from "./components/Board";
-import AudioPlayer from "./components/AudioPlayer";
-import LoginProvider from "../src/components/contexts/LoginContext";
 
 function App() {
   return (
