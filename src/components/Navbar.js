@@ -8,6 +8,7 @@ import ContinuousSlider from './VolumeSlider';
 import '../style/Navbar.scss';
 import { useLocation, Link } from 'react-router-dom';
 import Welcome from './Welcome';
+import logo from '../2530821-256.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,7 @@ export default function Navbar() {
         <div className={classes.root}>
           <AppBar position='static'>
             <Toolbar>
+            <img src={logo} style={{width: '40px', marginRight: '10px'}}/>
               <Typography variant='h6' className={classes.title}>
                 <Link
                   style={{ color: 'white', textDecoration: 'none' }}

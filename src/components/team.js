@@ -6,8 +6,6 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   root: {
-    background:
-      "url('https://www.wallpapertip.com/wmimgs/96-966354_plain-background-for-2d-game.jpg') no-repeat fixed center / cover",
     textAlign: "center",
     height: "100%",
     width: "100%",

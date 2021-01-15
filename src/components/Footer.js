@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from "react-router-dom";
 import '../style/Footer.scss';
+import logo from '../2530821-256.png'
 
 const Footer = () => {
     const location = useLocation();
@@ -9,8 +10,8 @@ const Footer = () => {
         <footer>
             <div className="container-footer">
                 <div>
-                    <h3>Nom du site</h3>
-                    <p className="logo">Logo</p>
+                    <h3>SimOffice</h3>
+                    <img src={logo} style={{width: '60px'}}/>
                 </div>
                 <div className="social">
                     <h3>Réseaux sociaux</h3>
@@ -25,7 +26,7 @@ const Footer = () => {
                     </a>
                 </div>
                 <div className="a-propos">
-                    <h3>Nom du site</h3>
+                    <h3>SimOffice</h3>
                     <a href='/team'>
                         <p>A propos</p>
                     </a>

@@ -44,8 +44,7 @@ const Board = () => {
     await axios.get(baseUrl + '/users').then((res) => setUsers(res.data));
     addToast('Cliquez pour faire apparaitre vos collègues', {
       appearance: 'success',
-      autoDismiss: false,
-      placement: 'top-right',
+      autoDismiss: true,
     });
   }, []);
 

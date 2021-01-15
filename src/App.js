@@ -14,7 +14,7 @@ import LoginProvider from '../src/components/contexts/LoginContext';
 
 function App() {
   return (
-    <ToastProvider placement='top-right'>
+    <ToastProvider placement='bottom-center'>
       <div>
         <LoginProvider>
           <Router>
