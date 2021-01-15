@@ -1,4 +1,8 @@
 .navbar-wrapper {
+  .MuiTypography-h6 {
+    font-size: 35;
+  }
+
   .settings {
     display: flex;
     align-items: center;
@@ -8,6 +12,8 @@
   }
 }
 
-.MuiToolbar-regular{
-  background-color: #000099;
+// MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary MuiPaper-elevation4
+
+.MuiToolbar-regular {
+  background-color: #3b84cecc;
 }

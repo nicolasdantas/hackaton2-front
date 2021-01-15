@@ -5,11 +5,23 @@ import ImageAvatar from "./Avatar";
 import Tooltip from "@material-ui/core/Tooltip";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import axios from "axios";
 
-const Tile = ({ tile, setShowWebcam }) => {
+const baseUrl = "https://526037743aa4.ngrok.io/api";
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const Tile = ({
+  tile,
+  setShowWebcam,
+  setStartGardenMusic,
+  setShowWhiteboard,
+  setShowMusic
+}) => {
   const { type, room } = tile;
-  if (tile.type.includes("other-users")) {
-  }
+
   const { userLogged, setUserLogged } = useContext(LoginContext);
 
   const HtmlTooltip = withStyles((theme) => ({
@@ -22,37 +34,62 @@ const Tile = ({ tile, setShowWebcam }) => {
     },
   }))(Tooltip);
 
-  const handleClick = (event) => {
-    if (
-      event.target.className.includes("seat") ||
-      event.target.className.includes("grass")
-    ) {
-      setUserLogged({
-        ...userLogged,
-        coordX: tile.coordX,
-        coordY: tile.coordY,
-      });
-    }
+  const handleClick = async (event) => {
+    setShowWebcam(false);
+    setShowWhiteboard(false);
+    setShowMusic(false);
+    // setStartGardenMusic(false);
+
     if (
       event.target.className.includes("space") &&
       event.target.className.includes("seat")
     ) {
       setShowWebcam(true);
     }
-  };
+    if (event.target.className.includes("meeting")) {
+      setShowWhiteboard(true);
+    }
+    if (
+      event.target.className.includes("seat") ||
+      event.target.className.includes("floor")
+    ) {
+      setStartGardenMusic(false);
+    }
 
-  const [coordX, setCoordX] = useState(tile.coordX);
-  const [coordY, setCoordY] = useState(tile.coordY);
+    if (event.target.className.includes("grass")) {
+      setStartGardenMusic(true);
+    }
+    if (event.target.className.includes("rest_room")) {
+      setShowMusic(true);
+    }
+
+    const moveResult = await axios.get(
+      `${baseUrl}/users/move/${userLogged.id}/${tile.coordX}/${tile.coordY}`
+    );
+
+    if (moveResult.data !== false) {
+      setUserLogged({
+        ...userLogged,
+        coordX: tile.coordX, // coords of the current tile, which knows its coords in the tile state
+        coordY: tile.coordY,
+      });
+    }
+  };
 
   return (
     <>
       <div
         className={room ? `${room} ${type}` : type}
+        title={
+          room
+            ? capitalizeFirstLetter(room.split('_').join(' '))
+            : capitalizeFirstLetter(type.split('_').join(' '))
+        }
         onClick={(event) => {
           handleClick(event);
         }}
       >
-        {type.includes("user-logged") && (
+        {/* {type.includes('user') && (
           <HtmlTooltip
             title={
               <React.Fragment>
@@ -69,8 +106,8 @@ const Tile = ({ tile, setShowWebcam }) => {
               <ImageAvatar image={userLogged.avatar} />
             </div>
           </HtmlTooltip>
-        )}
-        {type.includes("other-users") && (
+        )} */}
+        {type.includes("user") && (
           <HtmlTooltip
             title={
               <React.Fragment>
@@ -84,7 +121,7 @@ const Tile = ({ tile, setShowWebcam }) => {
             }
           >
             <div>
-              <ImageAvatar image={userLogged.avatar} />
+              <ImageAvatar image={tile.user.avatar} />
             </div>
           </HtmlTooltip>
         )}
