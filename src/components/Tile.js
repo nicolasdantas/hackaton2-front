@@ -9,6 +9,10 @@ import axios from 'axios';
 
 const baseUrl = 'https://526037743aa4.ngrok.io/api';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const Tile = ({
   tile,
   setShowWebcam,
@@ -71,28 +75,15 @@ const Tile = ({
     <>
       <div
         className={room ? `${room} ${type}` : type}
+        title={
+          room
+            ? capitalizeFirstLetter(room.split('_').join(' '))
+            : capitalizeFirstLetter(type.split('_').join(' '))
+        }
         onClick={(event) => {
           handleClick(event);
         }}
       >
-        {/* {type.includes('user') && (
-          <HtmlTooltip
-            title={
-              <React.Fragment>
-                <Typography color='inherit'>{userLogged.username}</Typography>
-                <img
-                  src={userLogged.avatar}
-                  style={{ width: '50px' }}
-                  alt={userLogged.username}
-                />
-              </React.Fragment>
-            }
-          >
-            <div>
-              <ImageAvatar image={userLogged.avatar} />
-            </div>
-          </HtmlTooltip>
-        )} */}
         {type.includes('user') && (
           <HtmlTooltip
             title={

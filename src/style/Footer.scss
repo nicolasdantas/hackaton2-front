@@ -1,31 +1,28 @@
-.container-footer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #000099;
-    margin-top: 70px;
-    h3{
-        color:#ede7f6;
-    }
+.container-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #212142;
+  margin-top: 70px;
+  h3 {
+    color: #ede7f6;
+  }
 }
 
-.social a{
-    text-decoration: none;
-    color: white;
+.social a {
+  text-decoration: none;
+  color: white;
 }
 
-.a-propos a{
-    text-decoration: none;
-    color: white;
+.a-propos a {
+  text-decoration: none;
+  color: white;
 }
 
-.languages p{
-    color: white;
+.languages p {
+  color: white;
 }
 
-.logo{
-    color: white;
+.logo {
+  color: white;
 }
-
-
-

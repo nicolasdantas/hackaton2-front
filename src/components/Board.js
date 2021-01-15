@@ -8,6 +8,8 @@ import lodash from 'lodash';
 import GardenMusic from './GardenMusic';
 import BoardLoader from './Loader';
 import ConferenceRoom from './ConferenceRoom';
+import { useToasts } from 'react-toast-notifications';
+import { MissedVideoCall } from '@material-ui/icons';
 // import { LoginContext } from '../components/contexts/LoginContext';
 
 const baseUrl = 'https://526037743aa4.ngrok.io/api';
@@ -21,6 +23,7 @@ const mapBoard = [];
 
 const Board = () => {
   const [board, setBoard] = useState([]);
+  const { addToast } = useToasts();
 
   const [boardWithUsers, setBoardWithUsers] = useState([]);
 
@@ -39,6 +42,11 @@ const Board = () => {
 
   useEffect(async () => {
     await axios.get(baseUrl + '/users').then((res) => setUsers(res.data));
+    addToast('Cliquez pour faire apparaitre vos collègues', {
+      appearance: 'success',
+      autoDismiss: false,
+      placement: 'top-right',
+    });
   }, []);
 
   useEffect(() => {
