@@ -18,7 +18,8 @@ const Tile = ({
   setShowWebcam,
   setStartGardenMusic,
   setShowWhiteboard,
-  setShowMusic
+  setShowMusic,
+  setShowRecipe
 }) => {
   const { type, room } = tile;
 
@@ -38,6 +39,7 @@ const Tile = ({
     setShowWebcam(false);
     setShowWhiteboard(false);
     setShowMusic(false);
+    setShowRecipe(false);
     // setStartGardenMusic(false);
 
     if (
@@ -61,6 +63,9 @@ const Tile = ({
     }
     if (event.target.className.includes("rest_room")) {
       setShowMusic(true);
+    }
+    if (event.target.className.includes("cafeteria") && event.target.className.includes("seat")) {
+      setShowRecipe(true);
     }
 
     const moveResult = await axios.get(
