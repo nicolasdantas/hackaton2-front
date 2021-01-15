@@ -68,6 +68,7 @@ const handleSubmit = (e, data) => {
         </div>
         </div>
             </form>
+            <div className="scroll-page-actu">
             {postRecipe.length >= 0 &&
                 postRecipe.map((post) => {
                     return (
@@ -88,6 +89,7 @@ const handleSubmit = (e, data) => {
                     )
                 })
             }
+            </div>
         </div>
     )
 }

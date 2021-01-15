@@ -64,7 +64,7 @@ const Tile = ({
     if (event.target.className.includes("rest_room")) {
       setShowMusic(true);
     }
-    if (event.target.className.includes("cafeteria")) {
+    if (event.target.className.includes("cafeteria") && event.target.className.includes("seat")) {
       setShowRecipe(true);
     }
 
