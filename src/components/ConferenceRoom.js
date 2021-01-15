@@ -13,7 +13,7 @@ const ConferenceRoom = ({ setShowWhiteboard }) => {
         <Iframe
           url='https://awwapp.com/b/ulxupumalz86w/'
           width='450px'
-          height='200px'
+          height='670px'
           id='myId'
           className='myClassname'
           display='initial'
