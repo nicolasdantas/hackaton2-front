@@ -16,7 +16,7 @@ const WebcamComponent = ({ showWebcam, setShowWebcam }) => {
       </div>
       <div>
         <Webcam videoConstraints={videoConstraints} />
-        <div className='second-webcam'>Second webcam</div>
+        <div className='second-webcam'></div>
       </div>
     </section>
   );
