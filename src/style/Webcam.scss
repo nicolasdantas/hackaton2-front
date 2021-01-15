@@ -1,8 +1,8 @@
 .webcam-wrapper {
   margin-left: 100px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   .icon {
     cursor: pointer;
     display: flex;
@@ -10,8 +10,11 @@
   }
 
   .second-webcam {
-    width: 480px;
-    height: 360px;
-    border: solid;
+    width: 355;
+    height: 300px;
+    background-image: url('https://theenglishfarm.com/sites/default/files/styles/featured_image/public/harold_2.jpg?itok=uo6h4hz4');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
   }
 }
