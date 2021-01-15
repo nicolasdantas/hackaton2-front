@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 const user = [
   {
     id: 8,
-    username: 'alex',
+    username: 'Alex',
     roles: ['ROLE_USER'],
     password:
       '$argon2id$v=19$m=65536,t=4,p=1$LQpx3qv7y3xL7f/nMv36Ag$mh9J601/LqIh7P1zXRD2hDSwh2OICQy/1Fbhmfx+POc',
