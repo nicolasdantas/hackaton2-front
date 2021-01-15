@@ -7,24 +7,26 @@ export default function Actu() {
     const { addToast } = useToasts();
     const [postRecipe, setPostRecipe] = useState([])
 
-    const [cookName, setCookname] = useState()
+    const [name, setName] = useState()
     const [image, setImage] = useState(null)
     const [content, setContent] = useState()
 
 useEffect(() => {
-    axios.get('http://d6e9432fc7eb.ngrok.io/api/users')
+    axios.get('http://d5b70dbe70d0.ngrok.io/api/users/')
     .then((res) => {
         setPostRecipe(res.data)
     })
 },[])
 
-const handleSubmit = (data) => {
-    axios.post('http://8ded0b75d1f4.ngrok.io/api/users', data)
+const handleSubmit = (e, data) => {
+    axios.post('http://d5b70dbe70d0.ngrok.io/api/lunches/new',data)
     .then((res) => setPostRecipe(res.data))
     addToast('Votre contenu a bien été publier', {
         appearance: 'success',
         autoDismiss: true,
       });
+      console.log(data)
+      e.target.reset();
 }
 
     return (
@@ -35,8 +37,8 @@ const handleSubmit = (data) => {
         <input
         className="input-form-actu"
           type="text"
-          value={cookName}
-          onChange={(e) => setCookname(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         </div>
         <div className="form-post-actu">
@@ -70,11 +72,15 @@ const handleSubmit = (data) => {
                             {post.lunches.length > 0 &&
                             <div className="infos-recipes">
                             <div className="name-date">
+                                <div className="name-recipe">
                                 <h3>{post.lunches[0].name}</h3>
+                                </div>
                                 <p>{post.lunches[0].created_at}</p>
                             </div>
+                            <div className="image-p">
                             <img className="image-recipe" src={post.lunches[0].image} alt={post.lunches[0].name} />
                             <p>{post.lunches[0].content}</p>
+                            </div>
                             <p>note: {post.lunches[0].rate}</p>
                             </div>}
                         </div>
