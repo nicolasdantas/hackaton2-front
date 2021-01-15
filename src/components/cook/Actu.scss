@@ -1,102 +1,125 @@
-.container-form-actu{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border:2px solid white;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 50%;
-    height: 300px;
-    border-radius: 10px;
-    .form-post-actu{
-        margin-top: 20px;
-        .input-form-actu{
-            padding: 5px;
-            border-radius: 10px;
-        }
-    }
+.container-page-actu {
+  // background-color: #243968;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 }
 
-.button-actu{
-    width: 80px;
-    height: 30px;
-    border-radius: 5px;
-}
+.container-form-actu {
+  background-color: #243968;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  padding: 5px;
+  margin-top: 50px;
 
-.container-page-actu{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+  width: 50%;
+  min-width: min-content;
+  height: 300px;
+  border-radius: 10px;
 
-.div-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .form-post-actu {
     margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.image-avatar{
-    width: 70px;
-    height: 70px;
-}
-
-.image-recipe{
-    width: 150px;
-}
-
-.cards-container{
-    margin-bottom: 20px;
-    border-radius: 10px;
-    border: 2px solid white;
-    width: 35%;
-    display: flex;
-    .profil-user{
-        width: 20%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        img{
-            border-radius: 50%;
-        }
+    .input-form-actu {
+      padding: 5px;
+      border-radius: 10px;
     }
+  }
 }
 
-.infos-recipes{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.button-actu {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+}
 
-    p{
-        text-align: center;
+.div-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.image-avatar {
+  width: 70px;
+  height: 70px;
+}
+
+.image-recipe {
+  width: 150px;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #243968;
+  justify-content: center;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid white;
+  width: min-content;
+  align-items: center;
+
+  .profil-user {
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      border-radius: 50%;
     }
+  }
 }
 
-h4{
-    margin-top: 0;
+.infos-recipes {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: min-content;
+
+  p,
+  h3,
+  h4 {
+    text-align: center;
+    margin-top: 4px;
+  }
 }
 
-.scroll-page-actu{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-    border: 1px dotted black;
-    overflow: auto;
-   /*  width:600px; 
+h4 {
+  margin-top: 0;
+}
+
+.scroll-page-actu {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  height: 300px;
+  width: min-content;
+  padding: 40px;
+
+  border: 1px dotted black;
+  margin-top: 30px;
+  overflow: auto;
+  /*  width:600px; 
     overflow-y:scroll; 
     position:relative;
     height: 300px; */
-/*     position: relative;
+  /*     position: relative;
     overflow: scroll;
     width: 1000px;
     height: 800px; */
 }
-
