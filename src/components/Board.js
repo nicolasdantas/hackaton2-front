@@ -11,6 +11,7 @@ import ConferenceRoom from "./ConferenceRoom";
 import { useToasts } from "react-toast-notifications";
 // import { MissedVideoCall } from "@material-ui/icons";
 import Jukebox from "./jukebox";
+import Actu from "./cook/Actu";
 // import { LoginContext } from '../components/contexts/LoginContext';
 
 const baseUrl = "https://526037743aa4.ngrok.io/api";
@@ -34,6 +35,7 @@ const Board = () => {
   const [showWebcam, setShowWebcam] = useState(false);
   const [showMusic, setShowMusic] = useState(false);
   const [showWhiteboard, setShowWhiteboard] = useState(false);
+  const [showRecipe, setShowRecipe] = useState(false);
   const eventSource = new EventSource(mercureUrl);
 
   const [startGardenMusic, setStartGardenMusic] = useState(false);
@@ -74,6 +76,7 @@ const Board = () => {
             setShowWhiteboard={setShowWhiteboard}
             showWebcam={showWebcam}
             setShowMusic={setShowMusic}
+            setShowRecipe={setShowRecipe}
           />
         );
       }
@@ -111,6 +114,7 @@ const Board = () => {
               setStartGardenMusic={setStartGardenMusic}
               setShowWhiteboard={setShowWhiteboard}
               setShowMusic={setShowMusic}
+              setShowRecipe={setShowRecipe}
             />
           );
         }
@@ -130,6 +134,11 @@ const Board = () => {
           <ConferenceRoom
             setShowWhiteboard={setShowWhiteboard}
             showWhiteboard={showWhiteboard}
+          />
+        )}
+        {showRecipe && (
+          <Actu setShowRecipe={setShowRecipe}
+                showRecipe={showRecipe}
           />
         )}
 

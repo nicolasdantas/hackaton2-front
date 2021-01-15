@@ -15,13 +15,13 @@ const Footer = () => {
           </div>
           <div className="social">
             <h3>Réseaux sociaux</h3>
-            <a href="https://www.facebook.com/ApsideGroupe">
+            <a target="_blank" rel="noreferrer" href="https://www.facebook.com/ApsideGroupe">
               <p>Facebook</p>
             </a>
-            <a href="https://www.instagram.com/p/B9ZgkDgFJGQ/">
+            <a target="_blank" rel="noreferrer" href="https://www.instagram.com/p/B9ZgkDgFJGQ/">
               <p>Instagram</p>
             </a>
-            <a href="https://twitter.com/apsidegroupe?lang=fr">
+            <a target="_blank" rel="noreferrer" href="https://twitter.com/apsidegroupe?lang=fr">
               <p>Twitter</p>
             </a>
           </div>
