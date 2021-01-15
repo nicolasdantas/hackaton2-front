@@ -45,7 +45,7 @@ const Board = () => {
   useEffect(async () => {
     await axios.get(baseUrl + "/users").then((res) => setUsers(res.data));
     addToast("Cliquez pour faire apparaitre vos collègues", {
-      appearance: "success",
+      appearance: "info",
       autoDismiss: true,
     });
   }, []);
