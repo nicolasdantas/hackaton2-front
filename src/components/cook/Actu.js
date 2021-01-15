@@ -5,8 +5,9 @@ import { useToasts } from 'react-toast-notifications';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import CloseIcon from '@material-ui/icons/Close';
 
-export default function Actu() {
+export default function Actu({showRecipe, setShowRecipe}) {
     const { addToast } = useToasts();
     const [postRecipe, setPostRecipe] = useState([])
 
@@ -34,6 +35,7 @@ const handleSubmit = (e, data) => {
 
     return (
         <div className="container-page-actu">
+        <CloseIcon onClick={() => setShowRecipe(false)} />
         <form className="container-form-actu" onSubmit={handleSubmit}>
         <h2 style={{color:'white'}} className="title-recette">Publie ta Recette !</h2>
         <div className="form-post-actu">

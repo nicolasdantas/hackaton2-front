@@ -21,8 +21,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="#">
+        SimOffice
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -69,19 +69,20 @@ export default function Login() {
   const history = useHistory();
   const { addToast } = useToasts();
 
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
-  const symfonyLogin = "https://bfafce609ada.ngrok.io/api/login";
+  const symfonyLogin = `http://d6e9432fc7eb.ngrok.io/api/login?username=${username}&password=${password}`;
 
   const onSubmit = async () => {
     try {
-      const res = await axios.post(symfonyLogin, { username, password });
+      const res = await axios.post(symfonyLogin);
       console.log(res);
       addToast("Vous êtes désormais connecté", {
-        appareance: "error",
+        appearance: "success",
         autoDismiss: true,
       });
+      history.push("/board");
     } catch (err) {
       addToast("Identifiants non reconnus", {
         appearance: "error",
@@ -135,12 +136,14 @@ export default function Login() {
             label="Remember me"
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => history.push("/board")}
+            onClick={() => {
+              onSubmit();
+            }}
           >
             Login
           </Button>

@@ -6,8 +6,7 @@
 .board-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 40px;
+  margin-top: 70px;
 }
 
 .grid-container {
@@ -35,8 +34,8 @@
     background-color: green;
     cursor: default;
   }
-  .other-users {
-    background-color: red;
+  .user {
+    background-color: rgb(45, 192, 192);
     cursor: default;
   }
   .user-logged {
